@@ -17,7 +17,7 @@ import org.slf4j.LoggerFactory;
  * @author Luiz Mello
  * 
  */
-public class ProducerUtil {
+public class ProducesUtil {
 
     /**
      * Retorna um objeto {@code Logger} que poderá ser injetado em outras
@@ -25,23 +25,36 @@ public class ProducerUtil {
      * sistema.
      * 
      * @param ip
+     *            objeto que marcado com o <i>annotation</i> {@code Inject}.
      * 
      * @return objeto {@code Logger}.
      */
     @Produces
-    public Logger produceLogger(final InjectionPoint ip) {
+    public Logger loggerProduces(final InjectionPoint ip) {
         return LoggerFactory.getLogger(ip.getMember().getDeclaringClass().getCanonicalName());
     }
-    
+
+    /**
+     * Retorna um objeto {@code ResourceBundle} que poderá ser injetado em
+     * outras classes para a leitura das mensagem do bundle de mensagem.
+     * 
+     * @param ip
+     *            objeto que marcado com o <i>annotation</i> {@code Inject}.
+     * 
+     * @return objeto {@code ResourceBundle}.
+     */
     @Produces
-    public ResourceBundle getBundle(final InjectionPoint ip) {
+    public ResourceBundle resourceBundleProduces(final InjectionPoint ip) {
+        ResourceBundle resourceBundle = null;
         FacesContext context = FacesContext.getCurrentInstance();
-        
+
         if (context == null) {
-            return ResourceBundle.getBundle("messages", Locale.getDefault());
+            resourceBundle = ResourceBundle.getBundle("messages", Locale.getDefault());
+        } else {
+            resourceBundle = context.getApplication().getResourceBundle(context, "msg");
         }
-        
-        return context.getApplication().getResourceBundle(context, "msg");
+
+        return resourceBundle;
     }
 
 }

@@ -6,7 +6,7 @@ import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import javax.persistence.NoResultException;
 
-import com.marcafut.util.MessageUtil;
+import com.marcafut.util.MessageBundleUtil;
 
 /**
  * Classe abstrata que define o comportamento padrão das classes de regra de
@@ -24,7 +24,7 @@ public abstract class AbstractRN<E extends AbstractED<K>, K> implements Serializ
     private static final long serialVersionUID = 1L;
     private AbstractBD<E, K> bd;
     @Inject
-    protected MessageUtil messageUtil;
+    protected MessageBundleUtil messageUtil;
     
     /**
      * Deve ser implementado pelas subclasses para informar à classe pai o
