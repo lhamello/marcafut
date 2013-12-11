@@ -11,9 +11,10 @@ import com.marcafut.business.model.UsuarioED;
 import com.marcafut.business.service.UsuarioRN;
 
 /**
+ * Classe que controla o login do usuário na aplicação.
  * 
  * @author Luiz Mello
- *
+ * 
  */
 @Named
 @ViewAccessScoped
@@ -23,14 +24,14 @@ public class LoginMB implements Serializable {
     @Inject
     private UsuarioED usuarioED;
     @Inject
-    private UsuarioRN usuarioService;
-    
-    public String efetuaLogin() {
+    private UsuarioRN usuarioRN;
+
+    public String efetuarLogin() {
         final String email = usuarioED.getEmail();
         final String senha = usuarioED.getSenha();
-        
-        UsuarioED usuario = usuarioService.efetuarLogin(email, senha);
-//        sessaoUsuarioController.setUsuarioED(usuario);
+
+        UsuarioED usuario = usuarioRN.efetuarLogin(email, senha);
+        // sessaoUsuarioController.setUsuarioED(usuario);
         return "index.xhtml?face-redirect=true";
     }
 
