@@ -21,7 +21,8 @@ public class UsuarioBD extends AbstractBD<UsuarioED, Long> {
      * @param email
      *            email pesquisado.
      * 
-     * @return um objeto do tipo {@code UsuarioED} com todos seus campos.
+     * @return um objeto do tipo {@code UsuarioED} com os dados do registro
+     *         pesquisado.
      * 
      * @throws NoResultException
      *             se o registro não for encontrado.

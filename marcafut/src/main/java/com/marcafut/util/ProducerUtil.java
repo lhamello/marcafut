@@ -1,7 +1,11 @@
 package com.marcafut.util;
 
+import java.util.Locale;
+import java.util.ResourceBundle;
+
 import javax.enterprise.inject.Produces;
 import javax.enterprise.inject.spi.InjectionPoint;
+import javax.faces.context.FacesContext;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,6 +31,17 @@ public class ProducerUtil {
     @Produces
     public Logger produceLogger(final InjectionPoint ip) {
         return LoggerFactory.getLogger(ip.getMember().getDeclaringClass().getCanonicalName());
+    }
+    
+    @Produces
+    public ResourceBundle getBundle(final InjectionPoint ip) {
+        FacesContext context = FacesContext.getCurrentInstance();
+        
+        if (context == null) {
+            return ResourceBundle.getBundle("messages", Locale.getDefault());
+        }
+        
+        return context.getApplication().getResourceBundle(context, "msg");
     }
 
 }

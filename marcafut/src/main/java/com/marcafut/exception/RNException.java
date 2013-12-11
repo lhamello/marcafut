@@ -18,10 +18,23 @@ public class RNException extends RuntimeException {
      * Recebe uma mensagem de erro para ser mostrada ao usuário.
      * 
      * @param mensagem
-     *            mensagem de erro.
+     *            mensagem tratada do erro.
      */
     public RNException(String mensagem) {
         super(mensagem);
+    }
+
+    /**
+     * Recebe uma mensagem de erro para ser mostrado ao usuario e também a
+     * exceção que causou o erro.
+     * 
+     * @param mensagem
+     *            menssagem tratada do erro.
+     * @param ex
+     *            exceção que gerou o erro.
+     */
+    public RNException(String mensagem, Exception ex) {
+        super(mensagem, ex);
     }
 
 }

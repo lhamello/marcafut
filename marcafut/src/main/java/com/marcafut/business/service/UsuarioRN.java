@@ -20,9 +20,8 @@ import com.marcafut.infra.AbstractRN;
 public class UsuarioRN extends AbstractRN<UsuarioED, Long> {
 
     private static final long serialVersionUID = 1L;
-
     @Inject
-    UsuarioBD usuarioBD;
+    private UsuarioBD usuarioBD;
 
     @Override
     @PostConstruct
@@ -30,24 +29,24 @@ public class UsuarioRN extends AbstractRN<UsuarioED, Long> {
         super.setBD(usuarioBD);
     }
 
-    public UsuarioED efetuarLogin(String email, String senha) {
+    public UsuarioED efetuarLogin(final String email, final String senha) {
         if (StringUtils.isBlank(email)) {
-            throw new RNException("Informe o email.");
+            throw new RNException(messageUtil.getMessage("usuario.informe.email"));
         } else if (StringUtils.isBlank(senha)) {
-            throw new RNException("Informe a senha.");
+            throw new RNException(messageUtil.getMessage("usuario.informe.senha"));
         }
 
         UsuarioED usuarioED;
         try {
             usuarioED = usuarioBD.consultarPorEmail(email);
         } catch (NoResultException ex) {
-            throw new RNException("Usuário não encontrado.");
+            throw new RNException(messageUtil.getMessage("usuario.naoEncontrado"), ex);
         }
 
         String senhaEncriptada = DigestUtils.sha512Hex(senha);
 
         if (!senhaEncriptada.equalsIgnoreCase(usuarioED.getSenha())) {
-            throw new RNException("Senha inválida.");
+            throw new RNException(messageUtil.getMessage("usuario.senha.invalida"));
         }
 
         return usuarioED;
