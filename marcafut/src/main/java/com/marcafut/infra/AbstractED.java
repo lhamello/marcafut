@@ -9,7 +9,7 @@ import org.slf4j.Logger;
  * Classe abstrata que define o comportamento das classes de entidade do
  * sistema.
  * 
- * @author Luiz Henrique
+ * @author Luiz Mello
  * 
  * @param <K>
  *            tipo da chave primária da entidade.

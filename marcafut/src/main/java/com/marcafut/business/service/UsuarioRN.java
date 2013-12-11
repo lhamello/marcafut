@@ -15,6 +15,12 @@ import com.marcafut.business.model.UsuarioED;
 import com.marcafut.exception.RNException;
 import com.marcafut.infra.AbstractRN;
 
+/**
+ * Classe de regra de negócios dos usuários do sistema.
+ * 
+ * @author Luiz Mello
+ * 
+ */
 @Stateless
 @TransactionAttribute(TransactionAttributeType.SUPPORTS)
 public class UsuarioRN extends AbstractRN<UsuarioED, Long> {
@@ -29,6 +35,17 @@ public class UsuarioRN extends AbstractRN<UsuarioED, Long> {
         super.setBD(usuarioBD);
     }
 
+    /**
+     * Efetuar o login de um usuário na aplicação.
+     * 
+     * @param email
+     *            e-mail do usuário.
+     * 
+     * @param senha
+     *            senha do usuário.
+     * 
+     * @return o dados do usuário.
+     */
     public UsuarioED efetuarLogin(final String email, final String senha) {
         if (StringUtils.isBlank(email)) {
             throw new RNException(messageUtil.getMessage("usuario.informe.email"));

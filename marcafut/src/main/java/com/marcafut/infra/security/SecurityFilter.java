@@ -18,7 +18,7 @@ import org.slf4j.Logger;
  * FIltro de segurança da aplicação resposável por redirecionar para a tela de
  * login quando o usuário não estiver autenticado.
  * 
- * @author Luiz Henrique
+ * @author Luiz Mello
  * 
  */
 public class SecurityFilter implements Filter {

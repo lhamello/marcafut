@@ -10,6 +10,11 @@ import org.apache.myfaces.extensions.cdi.core.api.scope.conversation.ViewAccessS
 import com.marcafut.business.model.UsuarioED;
 import com.marcafut.business.service.UsuarioRN;
 
+/**
+ * 
+ * @author Luiz Mello
+ *
+ */
 @Named
 @ViewAccessScoped
 public class LoginMB implements Serializable {
