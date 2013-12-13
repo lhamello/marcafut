@@ -31,8 +31,8 @@ import com.marcafut.infra.AbstractModel;
 @Entity
 @Table(name = "USERS")
 @NamedQueries({
-    @NamedQuery(name = "User.findByEmail", query = "SELECT u FROM UsuarioED u WHERE u.email = :email"),
-    @NamedQuery(name = "User.findById", query = "SELECT u FROM UsuarioED u WHERE u.id = :id") })
+    @NamedQuery(name = "User.findByEmailPassword", query = "SELECT u FROM UsuarioED u WHERE u.email = :email AND u.password = :password"),
+    @NamedQuery(name = "User.findById",            query = "SELECT u FROM UsuarioED u WHERE u.id = :id")})
 public class User extends AbstractModel<Long> {
 
     private static final long serialVersionUID = 1L;

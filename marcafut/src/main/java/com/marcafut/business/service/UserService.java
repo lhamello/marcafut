@@ -52,16 +52,12 @@ public class UserService extends AbstractService<User, Long> {
         }
 
         User user;
+        String encryptedPassword = DigestUtils.sha512Hex(password);
+        
         try {
-            user = userDAO.findByEmail(email);
+            user = userDAO.findByEmailPassword(email, encryptedPassword);
         } catch (NoResultException ex) {
             throw new ServiceException(bundle.getMessage("user.exception.wrong.email.password"), ex);
-        }
-
-        String encryptedPassword = DigestUtils.sha512Hex(password);
-
-        if (!encryptedPassword.equalsIgnoreCase(user.getPassword())) {
-            throw new ServiceException(bundle.getMessage("user.exception.wrong.email.password"));
         }
 
         return user;
