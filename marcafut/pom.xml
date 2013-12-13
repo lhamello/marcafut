@@ -65,7 +65,7 @@
 			<artifactId>myfaces-extcdi-bundle-jsf20</artifactId>
 			<version>1.0.5</version>
 		</dependency>
-		
+
 		<!-- PRIMEFACES -->
 		<dependency>
 			<groupId>org.primefaces</groupId>
@@ -80,7 +80,7 @@
 			<version>1.7.5</version>
 		</dependency>
 	</dependencies>
-	
+
 	<!-- SONAR -->
 	<profiles>
 		<profile>

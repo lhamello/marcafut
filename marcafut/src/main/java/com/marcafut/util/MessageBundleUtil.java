@@ -51,8 +51,8 @@ public class MessageBundleUtil {
      * @param key
      *            key to the message
      * 
-     * @param parameters
-     *            for the message
+     * @param params
+     *            parameters for the message
      * 
      * @return if the key is found, message related to the key. If the key is
      *         not found returns ??<i>key</i>??
