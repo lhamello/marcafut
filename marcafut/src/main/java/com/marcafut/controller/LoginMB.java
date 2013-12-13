@@ -7,8 +7,8 @@ import javax.inject.Named;
 
 import org.apache.myfaces.extensions.cdi.core.api.scope.conversation.ViewAccessScoped;
 
-import com.marcafut.business.model.UsuarioED;
-import com.marcafut.business.service.UsuarioRN;
+import com.marcafut.business.model.User;
+import com.marcafut.business.service.UserService;
 
 /**
  * Classe que controla o login do usuário na aplicação.
@@ -22,24 +22,24 @@ public class LoginMB implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Inject
-    private UsuarioED usuarioED;
+    private User usuarioED;
     @Inject
-    private UsuarioRN usuarioRN;
+    private UserService usuarioRN;
 
     public String efetuarLogin() {
         final String email = usuarioED.getEmail();
         final String senha = usuarioED.getSenha();
 
-        UsuarioED usuario = usuarioRN.efetuarLogin(email, senha);
+        User usuario = usuarioRN.efetuarLogin(email, senha);
         // sessaoUsuarioController.setUsuarioED(usuario);
         return "index.xhtml?face-redirect=true";
     }
 
-    public UsuarioED getUsuarioED() {
+    public User getUsuarioED() {
         return usuarioED;
     }
 
-    public void setUsuarioED(UsuarioED usuarioED) {
+    public void setUsuarioED(User usuarioED) {
         this.usuarioED = usuarioED;
     }
 
