@@ -11,23 +11,22 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Classe responsável por produzir objetos que serão injetados em outras
- * classes.
+ * Class responsible for producing objects that will be injected into other
  * 
- * @author Luiz Mello
+ * @author Luiz Henrique A. Mello
  * 
  */
 public class ProducesUtil {
 
     /**
-     * Retorna um objeto {@code Logger} que poderá ser injetado em outras
-     * classes para gerenciar as mensagens que serão mostradas na console do
-     * sistema.
+     * Returns a @ code Logger} object that can be injected into other classes
+     * to manage the messages that are displayed to the user or the system
+     * console.
      * 
      * @param ip
-     *            objeto que marcado com o <i>annotation</i> {@code Inject}.
+     *            object containing the annotation injection
      * 
-     * @return objeto {@code Logger}.
+     * @return object {@code Logger}
      */
     @Produces
     public Logger loggerProduces(final InjectionPoint ip) {
@@ -38,13 +37,10 @@ public class ProducesUtil {
      * Retorna um objeto {@code ResourceBundle} que poderá ser injetado em
      * outras classes para a leitura das mensagem do bundle de mensagem.
      * 
-     * @param ip
-     *            objeto que marcado com o <i>annotation</i> {@code Inject}.
-     * 
      * @return objeto {@code ResourceBundle}.
      */
     @Produces
-    public ResourceBundle resourceBundleProduces(final InjectionPoint ip) {
+    public ResourceBundle resourceBundleProduces() {
         ResourceBundle resourceBundle = null;
         FacesContext context = FacesContext.getCurrentInstance();
 

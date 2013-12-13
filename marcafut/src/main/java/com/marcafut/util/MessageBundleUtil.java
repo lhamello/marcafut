@@ -9,9 +9,9 @@ import javax.inject.Inject;
 import org.slf4j.Logger;
 
 /**
- * Classe responsável por ler as mensagens do <i>bundle</i> de mensagens.
+ * Class responsible for reading messages from the message bundle.
  * 
- * @author Luiz Mello
+ * @author Luiz Henrique A. Mello
  * 
  */
 public class MessageBundleUtil {
@@ -22,14 +22,13 @@ public class MessageBundleUtil {
     private ResourceBundle resourceBundle;
 
     /**
-     * Recebe uma chave e retorna o valor para esta chave contido no
-     * <i>bundle</i> de mensagens.
+     * Accesses the message bundle and returns the value of the given key.
      * 
      * @param key
-     *            chave para a mensagem.
+     *            key to the message
      * 
-     * @return se a chave for encontrada a mensagem relacionada é retornada,
-     *         senão retorna ??<i>Key</i>??.
+     * @return if the key is found, message related to the key. If the key is
+     *         not found returns ??<i>key</i>??
      */
     public String getMessage(String key) {
         StringBuilder message = new StringBuilder();
@@ -45,16 +44,18 @@ public class MessageBundleUtil {
     }
 
     /**
-     * Recebe uma chave para uma mensagem que contenha parâmetros. Este
-     * parâmetros são usados como parte da mensagem de retorno.
+     * Accesses the message bundle and returns the value of the given key. This
+     * key contains parameters that are formatted and added to the message
+     * before the message is returned.
      * 
      * @param key
-     *            chave para a mensagem.
-     * @param params
-     *            parâmetros a serem incorporados na mensagem.
+     *            key to the message
      * 
-     * @return se a chave for encontrada a mensagem relacionada é retornada já
-     *         com os parâmetros formatados, senão retorna ??<i>Key</i>??.
+     * @param parameters
+     *            for the message
+     * 
+     * @return if the key is found, message related to the key. If the key is
+     *         not found returns ??<i>key</i>??
      */
     public String getMessage(String key, Object... params) {
         String message = this.getMessage(key);

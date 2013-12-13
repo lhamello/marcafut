@@ -62,7 +62,7 @@ public abstract class AbstractModel<K> implements Serializable {
                 StringBuilder msgWarn = new StringBuilder();
                 
                 msgWarn.append(this.getClass().getSimpleName()).append('[');
-                msgWarn.append(bundle.getMessage("error.attribute.access")).append(": ").append(field);
+                msgWarn.append("Ocorreu um erro ao acessar o atributo").append(": ").append(field);
                 msgWarn.append(']');
                 
                 logger.warn(msgWarn.toString(), ex);
