@@ -3,8 +3,8 @@ package com.marcafut.business.dao;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
-import com.marcafut.business.model.UsuarioED;
-import com.marcafut.infra.AbstractBD;
+import com.marcafut.business.model.User;
+import com.marcafut.infra.AbstractDAO;
 
 /**
  * Classe que provê os acessos ao banco de dados para a tabela de usuários.
@@ -12,7 +12,7 @@ import com.marcafut.infra.AbstractBD;
  * @author Luiz Mello
  * 
  */
-public class UsuarioBD extends AbstractBD<UsuarioED, Long> {
+public class UserDAO extends AbstractDAO<User, Long> {
 
     /**
      * Realiza a pesquisa de um usuário a partir de seu email.<br>
@@ -27,11 +27,11 @@ public class UsuarioBD extends AbstractBD<UsuarioED, Long> {
      * @throws NoResultException
      *             se o registro não for encontrado.
      */
-    public UsuarioED consultarPorEmail(final String email) {
+    public User consultarPorEmail(final String email) {
         Query query = entityManager.createNamedQuery("UsuarioED.consultaPorEmail");
         query.setParameter("email", email);
 
-        return (UsuarioED) query.getSingleResult();
+        return (User) query.getSingleResult();
     }
 
 }

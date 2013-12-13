@@ -19,7 +19,7 @@ import javax.persistence.Query;
  * @param <K>
  *            tipo da chave primária da entidade.
  */
-public class AbstractBD<E extends AbstractED<K>, K> {
+public class AbstractDAO<E extends AbstractModel<K>, K> {
 
     private Class<E> entidade;
     @PersistenceContext
@@ -29,7 +29,7 @@ public class AbstractBD<E extends AbstractED<K>, K> {
      * Construtor padrão.
      */
     @SuppressWarnings("unchecked")
-    public AbstractBD() {
+    public AbstractDAO() {
         ParameterizedType genericSuperclass = (ParameterizedType) getClass().getGenericSuperclass();
         this.entidade = (Class<E>) genericSuperclass.getActualTypeArguments()[0];
     }

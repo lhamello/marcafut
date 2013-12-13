@@ -20,7 +20,7 @@ import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
-import com.marcafut.infra.AbstractED;
+import com.marcafut.infra.AbstractModel;
 
 /**
  * Representa o usuário que utiliza o sistema.
@@ -33,7 +33,7 @@ import com.marcafut.infra.AbstractED;
 @NamedQueries({
         @NamedQuery(name = "UsuarioED.consultaPorId", query = "SELECT u FROM UsuarioED u WHERE u.id = :id"),
         @NamedQuery(name = "UsuarioED.consultaPorEmail", query = "SELECT u FROM UsuarioED u WHERE u.email = :email") })
-public class UsuarioED extends AbstractED<Long> {
+public class User extends AbstractModel<Long> {
 
     private static final long serialVersionUID = 1L;
 
@@ -147,7 +147,7 @@ public class UsuarioED extends AbstractED<Long> {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        UsuarioED other = (UsuarioED) obj;
+        User other = (User) obj;
         if (id == null) {
             if (other.id != null) {
                 return false;

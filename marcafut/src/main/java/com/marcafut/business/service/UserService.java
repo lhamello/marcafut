@@ -10,10 +10,10 @@ import javax.persistence.NoResultException;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.StringUtils;
 
-import com.marcafut.business.dao.UsuarioBD;
-import com.marcafut.business.model.UsuarioED;
-import com.marcafut.exception.RNException;
-import com.marcafut.infra.AbstractRN;
+import com.marcafut.business.dao.UserDAO;
+import com.marcafut.business.model.User;
+import com.marcafut.exception.ServiceException;
+import com.marcafut.infra.AbstractService;
 
 /**
  * Classe de regra de negócios dos usuários do sistema.
@@ -23,11 +23,11 @@ import com.marcafut.infra.AbstractRN;
  */
 @Stateless
 @TransactionAttribute(TransactionAttributeType.SUPPORTS)
-public class UsuarioRN extends AbstractRN<UsuarioED, Long> {
+public class UserService extends AbstractService<User, Long> {
 
     private static final long serialVersionUID = 1L;
     @Inject
-    private UsuarioBD usuarioBD;
+    private UserDAO usuarioBD;
 
     @Override
     @PostConstruct
@@ -46,24 +46,24 @@ public class UsuarioRN extends AbstractRN<UsuarioED, Long> {
      * 
      * @return o dados do usuário.
      */
-    public UsuarioED efetuarLogin(final String email, final String senha) {
+    public User efetuarLogin(final String email, final String senha) {
         if (StringUtils.isBlank(email)) {
-            throw new RNException(messageUtil.getMessage("usuario.informe.email"));
+            throw new ServiceException(messageUtil.getMessage("usuario.informe.email"));
         } else if (StringUtils.isBlank(senha)) {
-            throw new RNException(messageUtil.getMessage("usuario.informe.senha"));
+            throw new ServiceException(messageUtil.getMessage("usuario.informe.senha"));
         }
 
-        UsuarioED usuarioED;
+        User usuarioED;
         try {
             usuarioED = usuarioBD.consultarPorEmail(email);
         } catch (NoResultException ex) {
-            throw new RNException(messageUtil.getMessage("usuario.naoEncontrado"), ex);
+            throw new ServiceException(messageUtil.getMessage("usuario.naoEncontrado"), ex);
         }
 
         String senhaEncriptada = DigestUtils.sha512Hex(senha);
 
         if (!senhaEncriptada.equalsIgnoreCase(usuarioED.getSenha())) {
-            throw new RNException(messageUtil.getMessage("usuario.senha.invalida"));
+            throw new ServiceException(messageUtil.getMessage("usuario.senha.invalida"));
         }
 
         return usuarioED;

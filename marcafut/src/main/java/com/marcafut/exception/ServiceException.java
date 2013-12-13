@@ -10,7 +10,7 @@ import javax.ejb.ApplicationException;
  * 
  */
 @ApplicationException(rollback = true)
-public class RNException extends RuntimeException {
+public class ServiceException extends RuntimeException {
 
     private static final long serialVersionUID = 1L;
 
@@ -20,7 +20,7 @@ public class RNException extends RuntimeException {
      * @param mensagem
      *            mensagem tratada do erro.
      */
-    public RNException(String mensagem) {
+    public ServiceException(String mensagem) {
         super(mensagem);
     }
 
@@ -33,7 +33,7 @@ public class RNException extends RuntimeException {
      * @param ex
      *            exceção que gerou o erro.
      */
-    public RNException(String mensagem, Exception ex) {
+    public ServiceException(String mensagem, Exception ex) {
         super(mensagem, ex);
     }
 

@@ -14,7 +14,7 @@ import org.slf4j.Logger;
  * @param <K>
  *            tipo da chave primária da entidade.
  */
-public abstract class AbstractED<K> implements Serializable {
+public abstract class AbstractModel<K> implements Serializable {
 
     private static final long serialVersionUID = 1L;
     protected Logger logger;

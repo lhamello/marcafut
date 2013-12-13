@@ -19,10 +19,10 @@ import com.marcafut.util.MessageBundleUtil;
  * @param <K>
  *            tipo da chave primária da entidade gerenciada por esta classe.
  */
-public abstract class AbstractRN<E extends AbstractED<K>, K> implements Serializable {
+public abstract class AbstractService<E extends AbstractModel<K>, K> implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    private AbstractBD<E, K> bd;
+    private AbstractDAO<E, K> bd;
     @Inject
     protected MessageBundleUtil messageUtil;
     
@@ -48,7 +48,7 @@ public abstract class AbstractRN<E extends AbstractED<K>, K> implements Serializ
      * @throws NoResultException
      *             se a entidade pesquisada não for encontrada.
      *             
-     * @see com.marcafut.infra.AbstractBD#consultarPorId(Object)
+     * @see com.marcafut.infra.AbstractDAO#consultarPorId(Object)
      * 
      */
     public E consultarPorId(final K chavePrimaria) {
@@ -61,7 +61,7 @@ public abstract class AbstractRN<E extends AbstractED<K>, K> implements Serializ
      * @param bd
      *            objeto {@code BaseBD} que será utilizado por esta classe.
      */
-    public void setBD(final AbstractBD<E, K> bd) {
+    public void setBD(final AbstractDAO<E, K> bd) {
         this.bd = bd;
     }
 }
