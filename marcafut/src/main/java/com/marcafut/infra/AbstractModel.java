@@ -3,7 +3,11 @@ package com.marcafut.infra;
 import java.io.Serializable;
 import java.lang.reflect.Field;
 
+import javax.inject.Inject;
+
 import org.slf4j.Logger;
+
+import com.marcafut.util.MessageBundleUtil;
 
 /**
  * Classe abstrata que define o comportamento das classes de entidade do
@@ -17,7 +21,10 @@ import org.slf4j.Logger;
 public abstract class AbstractModel<K> implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    @Inject
     protected Logger logger;
+    @Inject
+    protected MessageBundleUtil bundle;
     
     /**
      * Retorna a chave única da entidade, do tipo {@code K}.
@@ -53,8 +60,9 @@ public abstract class AbstractModel<K> implements Serializable {
                 stObjeto.append(field.getName()).append('=').append(field.get(this));
             } catch (IllegalArgumentException | IllegalAccessException ex) {
                 StringBuilder msgWarn = new StringBuilder();
+                
                 msgWarn.append(this.getClass().getSimpleName()).append('[');
-                msgWarn.append("Erro ao acessar o atributo: ").append(field);
+                msgWarn.append(bundle.getMessage("error.attribute.access")).append(": ").append(field);
                 msgWarn.append(']');
                 
                 logger.warn(msgWarn.toString(), ex);

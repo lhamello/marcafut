@@ -27,12 +27,12 @@ public class UserService extends AbstractService<User, Long> {
 
     private static final long serialVersionUID = 1L;
     @Inject
-    private UserDAO usuarioBD;
+    private UserDAO usuarioDAO;
 
     @Override
     @PostConstruct
     public void initBD() {
-        super.setBD(usuarioBD);
+        super.setBD(usuarioDAO);
     }
 
     /**
@@ -41,29 +41,29 @@ public class UserService extends AbstractService<User, Long> {
      * @param email
      *            e-mail do usuário.
      * 
-     * @param senha
+     * @param password
      *            senha do usuário.
      * 
      * @return o dados do usuário.
      */
-    public User efetuarLogin(final String email, final String senha) {
+    public User findUser(final String email, final String password) {
         if (StringUtils.isBlank(email)) {
-            throw new ServiceException(messageUtil.getMessage("usuario.informe.email"));
-        } else if (StringUtils.isBlank(senha)) {
-            throw new ServiceException(messageUtil.getMessage("usuario.informe.senha"));
+            throw new ServiceException(bundle.getMessage("user.exception.enter.email"));
+        } else if (StringUtils.isBlank(password)) {
+            throw new ServiceException(bundle.getMessage("user.exception.enter.password"));
         }
 
         User usuarioED;
         try {
-            usuarioED = usuarioBD.consultarPorEmail(email);
+            usuarioED = usuarioDAO.consultarPorEmail(email);
         } catch (NoResultException ex) {
-            throw new ServiceException(messageUtil.getMessage("usuario.naoEncontrado"), ex);
+            throw new ServiceException(bundle.getMessage("user.exception.wrong.email.password"), ex);
         }
 
-        String senhaEncriptada = DigestUtils.sha512Hex(senha);
+        String senhaEncriptada = DigestUtils.sha512Hex(password);
 
-        if (!senhaEncriptada.equalsIgnoreCase(usuarioED.getSenha())) {
-            throw new ServiceException(messageUtil.getMessage("usuario.senha.invalida"));
+        if (!senhaEncriptada.equalsIgnoreCase(usuarioED.getPassword())) {
+            throw new ServiceException(bundle.getMessage("user.exception.wrong.email.password"));
         }
 
         return usuarioED;

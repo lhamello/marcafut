@@ -29,10 +29,10 @@ import com.marcafut.infra.AbstractModel;
  * 
  */
 @Entity
-@Table(name = "USUARIOS")
+@Table(name = "USERS")
 @NamedQueries({
-        @NamedQuery(name = "UsuarioED.consultaPorId", query = "SELECT u FROM UsuarioED u WHERE u.id = :id"),
-        @NamedQuery(name = "UsuarioED.consultaPorEmail", query = "SELECT u FROM UsuarioED u WHERE u.email = :email") })
+    @NamedQuery(name = "UsuarioED.findByEmail", query = "SELECT u FROM UsuarioED u WHERE u.email = :email"),
+    @NamedQuery(name = "UsuarioED.findById", query = "SELECT u FROM UsuarioED u WHERE u.id = :id") })
 public class User extends AbstractModel<Long> {
 
     private static final long serialVersionUID = 1L;
@@ -43,33 +43,29 @@ public class User extends AbstractModel<Long> {
     @SequenceGenerator(name = "UsuarioED_SEQ", sequenceName = "USUARIO_ID_SEQ", allocationSize = 1)
     private Long id;
 
-    @Column(name = "NOME", length = 100, nullable = false)
+    @Column(name = "FIRST_NAME", length = 100, nullable = false)
     @NotNull
     @Pattern(regexp = "[^0-9]*", message = "Must not contain numbers")
-    private String nome;
+    private String firstName;
 
-    @Column(name = "SOBRENOME", length = 100, nullable = false)
+    @Column(name = "LAST_NAME", length = 100, nullable = false)
     @NotNull
     @Pattern(regexp = "[^0-9]*", message = "Must not contain numbers")
-    private String sobrenome;
+    private String lastName;
 
-    @Column(name = "APELIDO", length = 30)
-    @Pattern(regexp = "[^0-9]*", message = "Must not contain numbers")
-    private String apelido;
-
-    @Column(name = "DATA_NASCIMENTO")
+    @Column(name = "BIRTH_DATE")
     @Temporal(TemporalType.DATE)
-    private Calendar dataNascimento;
+    private Calendar birthDate;
 
     @Column(name = "EMAIL", length = 30, unique = true)
     @Email
     @NotBlank
     private String email;
 
-    @Column(name = "SENHA", length = 128)
+    @Column(name = "PASSWORD", length = 128)
     @NotBlank
     @Size(min = 6, max = 16)
-    private String senha;
+    private String password;
 
     @Override
     public Long getId() {
@@ -79,53 +75,45 @@ public class User extends AbstractModel<Long> {
     public void setId(final Long id) {
         this.id = id;
     }
-
-    public String getNome() {
-        return nome;
+    
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setNome(final String nome) {
-        this.nome = nome;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getSobrenome() {
-        return sobrenome;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setSobrenome(final String sobrenome) {
-        this.sobrenome = sobrenome;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
-    public String getApelido() {
-        return apelido;
+    public Calendar getBirthDate() {
+        return birthDate;
     }
 
-    public void setApelido(String apelido) {
-        this.apelido = apelido;
-    }
-
-    public Calendar getDataNascimento() {
-        return dataNascimento;
-    }
-
-    public void setDataNascimento(final Calendar dataNascimento) {
-        this.dataNascimento = dataNascimento;
+    public void setBirthDate(Calendar birthDate) {
+        this.birthDate = birthDate;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public void setEmail(final String email) {
+    public void setEmail(String email) {
         this.email = email;
     }
 
-    public String getSenha() {
-        return senha;
+    public String getPassword() {
+        return password;
     }
 
-    public void setSenha(final String senha) {
-        this.senha = senha;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     @Override

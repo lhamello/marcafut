@@ -24,7 +24,7 @@ public abstract class AbstractService<E extends AbstractModel<K>, K> implements 
     private static final long serialVersionUID = 1L;
     private AbstractDAO<E, K> bd;
     @Inject
-    protected MessageBundleUtil messageUtil;
+    protected MessageBundleUtil bundle;
     
     /**
      * Deve ser implementado pelas subclasses para informar à classe pai o
@@ -48,11 +48,11 @@ public abstract class AbstractService<E extends AbstractModel<K>, K> implements 
      * @throws NoResultException
      *             se a entidade pesquisada não for encontrada.
      *             
-     * @see com.marcafut.infra.AbstractDAO#consultarPorId(Object)
+     * @see com.marcafut.infra.AbstractDAO#findById(Object)
      * 
      */
-    public E consultarPorId(final K chavePrimaria) {
-        return bd.consultarPorId(chavePrimaria);
+    public E findById(final K chavePrimaria) {
+        return bd.findById(chavePrimaria);
     }
 
     /**

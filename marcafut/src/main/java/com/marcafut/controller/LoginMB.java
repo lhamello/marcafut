@@ -30,7 +30,7 @@ public class LoginMB implements Serializable {
         final String email = usuarioED.getEmail();
         final String senha = usuarioED.getSenha();
 
-        User usuario = usuarioRN.efetuarLogin(email, senha);
+        User usuario = usuarioRN.findUser(email, senha);
         // sessaoUsuarioController.setUsuarioED(usuario);
         return "index.xhtml?face-redirect=true";
     }

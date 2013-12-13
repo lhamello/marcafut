@@ -21,7 +21,7 @@ import javax.persistence.Query;
  */
 public class AbstractDAO<E extends AbstractModel<K>, K> {
 
-    private Class<E> entidade;
+    private Class<E> entity;
     @PersistenceContext
     protected EntityManager entityManager;
     
@@ -31,7 +31,7 @@ public class AbstractDAO<E extends AbstractModel<K>, K> {
     @SuppressWarnings("unchecked")
     public AbstractDAO() {
         ParameterizedType genericSuperclass = (ParameterizedType) getClass().getGenericSuperclass();
-        this.entidade = (Class<E>) genericSuperclass.getActualTypeArguments()[0];
+        this.entity = (Class<E>) genericSuperclass.getActualTypeArguments()[0];
     }
     
     /**
@@ -40,7 +40,7 @@ public class AbstractDAO<E extends AbstractModel<K>, K> {
      * Código {@code SQL} gerado: <i>SELECT * FROM entidade e WHERE e.id =
      * chavePrimaria</i>.
      * 
-     * @param chavePrimaria
+     * @param primaryKey
      *            chave primária do registro pesquisado.
      * 
      * @return o contéudo da entidade {@code E} pesquisada.
@@ -49,11 +49,11 @@ public class AbstractDAO<E extends AbstractModel<K>, K> {
      *             se o registro pesquisado não for encontrado.
      */
     @SuppressWarnings("unchecked")
-    public E consultarPorId(final K chavePrimaria) {
-        final String namedQuery = entidade.getSimpleName() + ".consultaPorId";
+    public E findById(final K primaryKey) {
+        final String namedQuery = entity.getSimpleName() + ".findById";
         
         Query query = entityManager.createNamedQuery(namedQuery);
-        query.setParameter("id", chavePrimaria);
+        query.setParameter("id", primaryKey);
         
         return (E) query.getSingleResult();
     }
