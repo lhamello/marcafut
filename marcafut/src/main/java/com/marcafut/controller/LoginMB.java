@@ -11,9 +11,9 @@ import com.marcafut.business.model.User;
 import com.marcafut.business.service.UserService;
 
 /**
- * Classe que controla o login do usuário na aplicação.
+ * This class control the user login in the application.
  * 
- * @author Luiz Mello
+ * @author Luiz Henrique A. Mello
  * 
  */
 @Named
@@ -22,25 +22,25 @@ public class LoginMB implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Inject
-    private User usuarioED;
+    private User user;
     @Inject
-    private UserService usuarioRN;
+    private UserService userService;
 
     public String efetuarLogin() {
-        final String email = usuarioED.getEmail();
-        final String senha = usuarioED.getSenha();
+        final String email = user.getEmail();
+        final String password = user.getPassword();
 
-        User usuario = usuarioRN.findUser(email, senha);
+        User usuario = userService.login(email, password);
         // sessaoUsuarioController.setUsuarioED(usuario);
         return "index.xhtml?face-redirect=true";
     }
 
-    public User getUsuarioED() {
-        return usuarioED;
+    public User getUser() {
+        return user;
     }
 
-    public void setUsuarioED(User usuarioED) {
-        this.usuarioED = usuarioED;
+    public void setUser(User user) {
+        this.user = user;
     }
 
 }

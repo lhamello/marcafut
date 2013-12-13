@@ -16,9 +16,9 @@ import com.marcafut.exception.ServiceException;
 import com.marcafut.infra.AbstractService;
 
 /**
- * Classe de regra de negócios dos usuários do sistema.
+ * This class contains the rules for the application users.
  * 
- * @author Luiz Mello
+ * @author Luiz Henrique A. Mello
  * 
  */
 @Stateless
@@ -27,46 +27,44 @@ public class UserService extends AbstractService<User, Long> {
 
     private static final long serialVersionUID = 1L;
     @Inject
-    private UserDAO usuarioDAO;
+    private UserDAO userDAO;
 
     @Override
     @PostConstruct
     public void initDAO() {
-        super.setBD(usuarioDAO);
+        super.setDAO(userDAO);
     }
 
     /**
-     * Efetuar o login de um usuário na aplicação.
+     * Authenticates the user in the application.
      * 
-     * @param email
-     *            e-mail do usuário.
+     * @param email user e-mail.
      * 
-     * @param password
-     *            senha do usuário.
+     * @param password user password.
      * 
-     * @return o dados do usuário.
+     * @return the logged user.
      */
-    public User findUser(final String email, final String password) {
+    public User signIn(final String email, final String password) {
         if (StringUtils.isBlank(email)) {
             throw new ServiceException(bundle.getMessage("user.exception.enter.email"));
         } else if (StringUtils.isBlank(password)) {
             throw new ServiceException(bundle.getMessage("user.exception.enter.password"));
         }
 
-        User usuarioED;
+        User user;
         try {
-            usuarioED = usuarioDAO.consultarPorEmail(email);
+            user = userDAO.findByEmail(email);
         } catch (NoResultException ex) {
             throw new ServiceException(bundle.getMessage("user.exception.wrong.email.password"), ex);
         }
 
-        String senhaEncriptada = DigestUtils.sha512Hex(password);
+        String encryptedPassword = DigestUtils.sha512Hex(password);
 
-        if (!senhaEncriptada.equalsIgnoreCase(usuarioED.getPassword())) {
+        if (!encryptedPassword.equalsIgnoreCase(user.getPassword())) {
             throw new ServiceException(bundle.getMessage("user.exception.wrong.email.password"));
         }
 
-        return usuarioED;
+        return user;
     }
 
 }

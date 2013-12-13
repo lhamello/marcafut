@@ -3,10 +3,10 @@ package com.marcafut.exception;
 import javax.ejb.ApplicationException;
 
 /**
- * Exceção que estende {@code RuntimeException}. Deverá ser lançada a partir da
- * camada de negócio.
+ * This exception extends {@code RuntimeException}.<br>
+ * Should be thrown from the business layer.
  * 
- * @author Luiz Mello
+ * @author Luiz Henrique A. Mello
  * 
  */
 @ApplicationException(rollback = true)
@@ -15,26 +15,27 @@ public class ServiceException extends RuntimeException {
     private static final long serialVersionUID = 1L;
 
     /**
-     * Recebe uma mensagem de erro para ser mostrada ao usuário.
+     * Sets the error message.<br>
+     * This message should be displayed to the user.
      * 
-     * @param mensagem
-     *            mensagem tratada do erro.
+     * @param message error message.
      */
-    public ServiceException(String mensagem) {
-        super(mensagem);
+    public ServiceException(String message) {
+        super(message);
     }
 
     /**
-     * Recebe uma mensagem de erro para ser mostrado ao usuario e também a
-     * exceção que causou o erro.
+     * Sets the error message and the exception that led to the error.<br>
+     * This message should be displayed to the user.
      * 
-     * @param mensagem
-     *            menssagem tratada do erro.
+     * @param message
+     *            error message.
+     * 
      * @param ex
-     *            exceção que gerou o erro.
+     *            exception that led to the error.
      */
-    public ServiceException(String mensagem, Exception ex) {
-        super(mensagem, ex);
+    public ServiceException(String message, Exception ex) {
+        super(message, ex);
     }
 
 }

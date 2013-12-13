@@ -36,7 +36,7 @@ public class AbstractDAO<E extends AbstractModel<K>, K> {
     
     /**
      * Find a entity (in the database) by primary key.<br>
-     * Generated {@code SQL} code: <i>SELECT * FROM entity e WHERE e.id = primaryKey</i>.
+     * Generated <i>SQL</i> code: <i>SELECT * FROM entity e WHERE e.id = primaryKey</i>.
      * 
      * @param primaryKey
      *            primary key for the searched object.
