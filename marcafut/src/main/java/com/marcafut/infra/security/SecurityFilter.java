@@ -2,7 +2,6 @@ package com.marcafut.infra.security;
 
 import java.io.IOException;
 
-import javax.inject.Inject;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -11,8 +10,6 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.slf4j.Logger;
 
 /**
  * FIltro de segurança da aplicação resposável por redirecionar para a tela de

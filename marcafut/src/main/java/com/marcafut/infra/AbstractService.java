@@ -4,7 +4,6 @@ import java.io.Serializable;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
-import javax.persistence.NoResultException;
 
 import com.marcafut.exception.ServiceException;
 import com.marcafut.util.MessageBundleUtil;

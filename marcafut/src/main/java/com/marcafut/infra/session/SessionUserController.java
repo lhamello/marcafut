@@ -7,6 +7,8 @@ import javax.enterprise.context.SessionScoped;
 @SessionScoped
 public class SessionUserController implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+
 //    private static final long serialVersionUID = 1L;
 //
 //    private UsuarioED usuarioED;
