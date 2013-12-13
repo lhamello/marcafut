@@ -6,62 +6,61 @@ import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import javax.persistence.NoResultException;
 
+import com.marcafut.exception.ServiceException;
 import com.marcafut.util.MessageBundleUtil;
 
 /**
- * Classe abstrata que define o comportamento padrão das classes de regra de
- * negócio do sistema.
+ * Abstract class for the system service classes.<br>
+ * This class provides the defaults methods for the service classes.
  * 
- * @author Luiz Mello
+ * @author Luiz Henrique A. Mello
  * 
  * @param <E>
- *            entidade gerenciada por esta classe.
+ *            entity managed by the class.
+ * 
  * @param <K>
- *            tipo da chave primária da entidade gerenciada por esta classe.
+ *            primary key type.
  */
 public abstract class AbstractService<E extends AbstractModel<K>, K> implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    private AbstractDAO<E, K> bd;
+    private AbstractDAO<E, K> dao;
     @Inject
     protected MessageBundleUtil bundle;
     
     /**
-     * Deve ser implementado pelas subclasses para informar à classe pai o
-     * objeto {@code BaseBD} que será utilizado por esta classe.
+     * Must be implemented by subclasses to inform the parent class the
+     * {@code AbstractDAO} that will be used by this class.
      */
     @PostConstruct
-    public abstract void initBD();
+    public abstract void initDAO();
 
     /**
-     * Chama a função {@code consultarPorId(Object)} da classe {@code AppBD},
-     * que realiza a pesquisa de uma entidade no banco de dados a partir de sua
-     * chave primária.
+     * Call the <i>DAO</i> class to perform the search by primaryKey.<br>
+     * The primary key can't no be {@code null}.
      * 
+     * @param primaryKey
+     *            primary key for entity.
      * 
-     * @param chavePrimaria
+     * @return the value of entity searched.
      * 
-     *            valor da chave primária da entidade a ser pesquisada.
-     * 
-     * @return a entidade pesquisada completa.
-     * 
-     * @throws NoResultException
-     *             se a entidade pesquisada não for encontrada.
-     *             
      * @see com.marcafut.infra.AbstractDAO#findById(Object)
-     * 
      */
-    public E findById(final K chavePrimaria) {
-        return bd.findById(chavePrimaria);
+    public E findById(final K primaryKey) {
+        if (primaryKey == null) {
+            throw new ServiceException(bundle.getMessage("abstract.exception.enter.primaryKey"));
+        }
+        
+        return dao.findById(primaryKey);
     }
 
     /**
-     * Seta o objeto {@code BaseBD} que será utilizado por esta classe.
+     * Sets the {@code AbstractDAO} object that will be used by this class.
      * 
-     * @param bd
-     *            objeto {@code BaseBD} que será utilizado por esta classe.
+     * @param dao the {@code AbstractDAO} object that will be used by this class.
      */
-    public void setBD(final AbstractDAO<E, K> bd) {
-        this.bd = bd;
+    public void setDAO(final AbstractDAO<E, K> dao) {
+        this.dao = dao;
     }
+    
 }

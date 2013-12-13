@@ -3,21 +3,21 @@ package com.marcafut.infra;
 import java.lang.reflect.ParameterizedType;
 
 import javax.persistence.EntityManager;
-import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 /**
- * Classe abstrata responsável por injetar a unidade de persitência nas classes
- * <i>DAO</i> que a estendem. Também fornece os padrões de acesso ao banco de
- * dados.
+ * Abstract <i>DAO</i> for the system <i>DAO</i> classes.<br>
+ * This class contains the persistence unit and provides default methods for
+ * accessing the database.
  * 
- * @author Luiz Mello
+ * @author Luiz Henrique A. Mello
  * 
  * @param <E>
- *            entidade gerenciada pela classe <i>DAO</i>.
+ *            entity managed by the class.
+ * 
  * @param <K>
- *            tipo da chave primária da entidade.
+ *            primary key type.
  */
 public class AbstractDAO<E extends AbstractModel<K>, K> {
 
@@ -26,7 +26,7 @@ public class AbstractDAO<E extends AbstractModel<K>, K> {
     protected EntityManager entityManager;
     
     /**
-     * Construtor padrão.
+     * Set the entity that will be managed by the class.
      */
     @SuppressWarnings("unchecked")
     public AbstractDAO() {
@@ -35,18 +35,13 @@ public class AbstractDAO<E extends AbstractModel<K>, K> {
     }
     
     /**
-     * Realiza consulta no banco de dados a partir da chave primária da
-     * entidade.<br>
-     * Código {@code SQL} gerado: <i>SELECT * FROM entidade e WHERE e.id =
-     * chavePrimaria</i>.
+     * Find a entity (in the database) by primary key.<br>
+     * Generated {@code SQL} code: <i>SELECT * FROM entity e WHERE e.id = primaryKey</i>.
      * 
      * @param primaryKey
-     *            chave primária do registro pesquisado.
+     *            primary key for the searched object.
      * 
-     * @return o contéudo da entidade {@code E} pesquisada.
-     * 
-     * @throws NoResultException
-     *             se o registro pesquisado não for encontrado.
+     * @return value of the entity searched.
      */
     @SuppressWarnings("unchecked")
     public E findById(final K primaryKey) {

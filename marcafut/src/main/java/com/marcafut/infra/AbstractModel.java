@@ -10,13 +10,12 @@ import org.slf4j.Logger;
 import com.marcafut.util.MessageBundleUtil;
 
 /**
- * Classe abstrata que define o comportamento das classes de entidade do
- * sistema.
+ * Abstract class for system model classes.
  * 
- * @author Luiz Mello
+ * @author Luiz Henrique A. Mello
  * 
  * @param <K>
- *            tipo da chave primária da entidade.
+ *            entity primary key type.
  */
 public abstract class AbstractModel<K> implements Serializable {
 
@@ -27,15 +26,15 @@ public abstract class AbstractModel<K> implements Serializable {
     protected MessageBundleUtil bundle;
     
     /**
-     * Retorna a chave única da entidade, do tipo {@code K}.
+     * Returns the entity primary key.
      * 
-     * @return chave única da entidade.
+     * @return primary key;
      */
     public abstract K getId();
     
     /**
-     * Monta uma {@code String} que descreve a classe: contém nome de atributos
-     * e seus valores.
+     * Builds a {@code String} for the {@code toString()} method through
+     * <i>Java</i> reflection.
      */
     @Override
     @SuppressWarnings("rawtypes")
@@ -45,9 +44,8 @@ public abstract class AbstractModel<K> implements Serializable {
         StringBuilder stObjeto = new StringBuilder(500);
         stObjeto.append(clazz.getName()).append('[');
         
-        // Pega os atributos declarados na classe
         Field[] fields = clazz.getDeclaredFields();
-        // itera sobre a lista de atributos para montar a string de retorno
+        
         for (int i = 0; i < fields.length; i++) {
             if (i != 0) {
                 stObjeto.append(',');

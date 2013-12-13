@@ -31,7 +31,7 @@ public class UserService extends AbstractService<User, Long> {
 
     @Override
     @PostConstruct
-    public void initBD() {
+    public void initDAO() {
         super.setBD(usuarioDAO);
     }
 
