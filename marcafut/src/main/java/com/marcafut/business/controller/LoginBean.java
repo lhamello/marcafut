@@ -1,4 +1,4 @@
-package com.marcafut.controller;
+package com.marcafut.business.controller;
 
 import java.io.Serializable;
 
@@ -18,7 +18,7 @@ import com.marcafut.business.service.UserService;
  */
 @Named
 @ViewAccessScoped
-public class LoginMB implements Serializable {
+public class LoginBean implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Inject

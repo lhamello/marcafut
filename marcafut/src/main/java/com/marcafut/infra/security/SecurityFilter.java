@@ -2,6 +2,7 @@ package com.marcafut.infra.security;
 
 import java.io.IOException;
 
+import javax.inject.Inject;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -10,6 +11,10 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.slf4j.Logger;
+
+import com.marcafut.infra.session.UserSession;
 
 /**
  * FIltro de segurança da aplicação resposável por redirecionar para a tela de
@@ -23,35 +28,28 @@ public class SecurityFilter implements Filter {
     // private static final String INDEX_PAGE = "/index.xhtml";
     private static final String LOGIN_PAGE = "/login.xhtml";
 
-    // @Inject
-    // private Logger logger;
+    @Inject
+    private Logger logger;
 
+    @Inject
+    private UserSession userSession;
+    
     @Override
     public void destroy() {
-        System.out.println(">>>>>>>>>>>> DESTROY");
+        logger.debug(SecurityFilter.class + " destroyed.");
     }
 
     @Override
-    public void doFilter(ServletRequest servletRequest,
-            ServletResponse servletResponse, FilterChain filterChain)
-            throws IOException, ServletException {
+    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         final HttpServletRequest request = (HttpServletRequest) servletRequest;
         final HttpServletResponse response = (HttpServletResponse) servletResponse;
 
-        if (this.isPublico(request)) {
+        if (this.isPublic(request)) {
             filterChain.doFilter(request, response);
             return;
         }
 
-        // Não logado
-        // if (sessaoUsuarioController == null ||
-        // sessaoUsuarioController.getUsuarioED() == null) {
-        // doRedirect(request, response, LOGIN_PAGE);
-        // return;
-        // }
-
-        // TODO
-        if (true) {
+        if (userSession == null || !userSession.isUserLogged()) {
             doRedirect(request, response, LOGIN_PAGE);
             return;
         }
@@ -82,7 +80,7 @@ public class SecurityFilter implements Filter {
         }
     }
 
-    private boolean isPublico(final HttpServletRequest request) {
+    private boolean isPublic(final HttpServletRequest request) {
         boolean acessoPublico = false;
         String requestURI = request.getRequestURI();
 
