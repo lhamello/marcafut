@@ -23,7 +23,18 @@ import org.hibernate.validator.constraints.NotBlank;
 import com.marcafut.infra.AbstractModel;
 
 /**
- * Representa o usuário que utiliza o sistema.
+ * Representa o usuário que utiliza o sistema.<br>
+ * List of fields:<br>
+ * <ul>
+ * <li><i>id</i> - table identifier (primary key).</li>
+ * <li><i>photo</i> - user photo.</li>
+ * <li><i>firstName</i> - user first name.</li>
+ * <li><i>lastName</i> - user last name.</li>
+ * <li><i>birthDate</i> - user birth date.</li>
+ * <li><i>email</i> - user email.</li>
+ * <li><i>password</i> - user password.</li>
+ * <li><i>fullRegistration</i> - indicates whether or not the user has finished his record in the system.</li>
+ * </ul>
  * 
  * @author Luiz Mello
  * 
@@ -37,45 +48,76 @@ public class User extends AbstractModel<Long> {
 
     private static final long serialVersionUID = 1L;
 
+    /**
+     * Unique user identifier (primary key).
+     */
     @Id
     @Column(name = "ID", nullable = false)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "UsuarioED_SEQ")
     @SequenceGenerator(name = "UsuarioED_SEQ", sequenceName = "USUARIO_ID_SEQ", allocationSize = 1)
     private Long id;
-
+    /**
+     * User's photo.
+     */
+    @Column(name = "PHOTO", nullable = true, columnDefinition = "BYTEA")
+    private Byte[] photo;
+    /**
+     * User's first name.
+     */
     @Column(name = "FIRST_NAME", length = 100, nullable = false)
     @NotNull
     @Pattern(regexp = "[^0-9]*", message = "Must not contain numbers")
     private String firstName;
-
+    /**
+     * User's last name.
+     */
     @Column(name = "LAST_NAME", length = 100, nullable = false)
     @NotNull
     @Pattern(regexp = "[^0-9]*", message = "Must not contain numbers")
     private String lastName;
-
+    /**
+     * User's birth date.
+     */
     @Column(name = "BIRTH_DATE")
     @Temporal(TemporalType.DATE)
     private Calendar birthDate;
-
+    /**
+     * User's e-mail.
+     */
     @Column(name = "EMAIL", length = 30, unique = true)
     @Email
     @NotBlank
     private String email;
-
+    /**
+     * User's password.
+     */
     @Column(name = "PASSWORD", length = 128)
     @NotBlank
     @Size(min = 6, max = 16)
     private String password;
-
+    /**
+     * Indicates whether or not the user has finished his record in the system.
+     */
+    @Column(name = "FULL_REGISTRATION", nullable = false)
+    private Boolean fullRegistration;
+    
     @Override
     public Long getId() {
         return id;
     }
 
-    public void setId(final Long id) {
+    public void setId(Long id) {
         this.id = id;
     }
-    
+
+    public Byte[] getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(Byte[] photo) {
+        this.photo = photo;
+    }
+
     public String getFirstName() {
         return firstName;
     }
@@ -114,6 +156,14 @@ public class User extends AbstractModel<Long> {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Boolean getFullRegistration() {
+        return fullRegistration;
+    }
+
+    public void setFullRegistration(Boolean fullRegistration) {
+        this.fullRegistration = fullRegistration;
     }
 
     @Override
