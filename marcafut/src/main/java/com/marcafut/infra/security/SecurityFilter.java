@@ -17,15 +17,14 @@ import org.slf4j.Logger;
 import com.marcafut.infra.session.UserSession;
 
 /**
- * FIltro de segurança da aplicação resposável por redirecionar para a tela de
- * login quando o usuário não estiver autenticado.
+ * Security filter application responsible for directing to the login screen
+ * when the user is not authenticated.
  * 
- * @author Luiz Mello
+ * @author Luiz Henrique A. Mello
  * 
  */
 public class SecurityFilter implements Filter {
 
-    // private static final String INDEX_PAGE = "/index.xhtml";
     private static final String LOGIN_PAGE = "/login.xhtml";
 
     @Inject
@@ -62,20 +61,13 @@ public class SecurityFilter implements Filter {
     public void init(FilterConfig filterConfig) throws ServletException {
     }
 
-    private void doRedirect(final HttpServletRequest req,
-            final HttpServletResponse res, String url) throws IOException,
-            ServletException {
-        // JSF ajax request. Retorna um XML de resposta para o JavaScript do JSF
-        // executar o redirect no lado client.
+    private void doRedirect(final HttpServletRequest req, final HttpServletResponse res, String url) throws IOException, ServletException {
+        // JSF ajax request. Return a XML for JavaScript from JSF execute the
+        // redirect in client side.
         if ("partial/ajax".equals(req.getHeader("Faces-Request"))) {
             res.setContentType("text/xml");
-            res.getWriter()
-                    .append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>")
-                    .printf("<partial-response><redirect url=\"%s\"></redirect></partial-response>",
-                            url);
+            res.getWriter().append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>").printf("<partial-response><redirect url=\"%s\"></redirect></partial-response>", url);
         } else {
-            // Normal request. Excecuta redirect como de costume.
-            // res.sendRedirect(url);
             req.getRequestDispatcher(url).forward(req, res);
         }
     }

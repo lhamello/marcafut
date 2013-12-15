@@ -38,11 +38,16 @@ public class UserService extends AbstractService<User, Long> {
     /**
      * Authenticates the user in the application.
      * 
-     * @param email user e-mail.
+     * @param email
+     *            user e-mail.
      * 
-     * @param password user password.
+     * @param password
+     *            user password.
      * 
      * @return the logged user.
+     * 
+     * @throws ServiceException
+     *             if the email or password is {@code null} or incorrect.
      */
     public User signIn(final String email, final String password) {
         if (StringUtils.isBlank(email)) {

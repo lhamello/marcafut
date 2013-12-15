@@ -32,6 +32,14 @@ public abstract class AbstractModel<K> implements Serializable {
      */
     public abstract K getId();
     
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
+        return result;
+    }
+    
     /**
      * Builds a {@code String} for the {@code toString()} method through
      * <i>Java</i> reflection.

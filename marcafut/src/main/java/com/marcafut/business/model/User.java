@@ -1,5 +1,6 @@
 package com.marcafut.business.model;
 
+import java.util.Arrays;
 import java.util.Calendar;
 
 import javax.persistence.Column;
@@ -23,7 +24,7 @@ import org.hibernate.validator.constraints.NotBlank;
 import com.marcafut.infra.AbstractModel;
 
 /**
- * Representa o usuário que utiliza o sistema.<br>
+ * Represents the system user.<br>
  * List of fields:<br>
  * <ul>
  * <li><i>id</i> - table identifier (primary key).</li>
@@ -42,8 +43,8 @@ import com.marcafut.infra.AbstractModel;
 @Entity
 @Table(name = "USERS")
 @NamedQueries({
-    @NamedQuery(name = "User.findByEmailPassword", query = "SELECT u FROM UsuarioED u WHERE u.email = :email AND u.password = :password"),
-    @NamedQuery(name = "User.findById",            query = "SELECT u FROM UsuarioED u WHERE u.id = :id")})
+    @NamedQuery(name = "User.findByEmailPassword", query = "SELECT u FROM User u WHERE u.email = :email AND u.password = :password"),
+    @NamedQuery(name = "User.findById",            query = "SELECT u FROM User u WHERE u.id = :id")})
 public class User extends AbstractModel<Long> {
 
     private static final long serialVersionUID = 1L;
@@ -106,23 +107,38 @@ public class User extends AbstractModel<Long> {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(final Long id) {
         this.id = id;
     }
 
     public Byte[] getPhoto() {
-        return photo;
+        Byte[] response = null;
+        
+        if (photo != null) {
+            response = Arrays.copyOf(photo, photo.length);
+        } 
+        
+        return response;
     }
 
-    public void setPhoto(Byte[] photo) {
-        this.photo = photo;
+    public void setPhoto(final Byte[] photo) {
+        Byte[] newArray;
+        
+        try {
+            newArray = Arrays.copyOf(photo, photo.length);
+        } catch (NullPointerException ex) {
+            newArray = null;
+            logger.debug("Attribute photo is null.", ex);
+        }
+        
+        this.photo = newArray;
     }
 
     public String getFirstName() {
         return firstName;
     }
 
-    public void setFirstName(String firstName) {
+    public void setFirstName(final String firstName) {
         this.firstName = firstName;
     }
 
@@ -130,7 +146,7 @@ public class User extends AbstractModel<Long> {
         return lastName;
     }
 
-    public void setLastName(String lastName) {
+    public void setLastName(final String lastName) {
         this.lastName = lastName;
     }
 
@@ -138,7 +154,7 @@ public class User extends AbstractModel<Long> {
         return birthDate;
     }
 
-    public void setBirthDate(Calendar birthDate) {
+    public void setBirthDate(final Calendar birthDate) {
         this.birthDate = birthDate;
     }
 
@@ -146,7 +162,7 @@ public class User extends AbstractModel<Long> {
         return email;
     }
 
-    public void setEmail(String email) {
+    public void setEmail(final String email) {
         this.email = email;
     }
 
@@ -154,7 +170,7 @@ public class User extends AbstractModel<Long> {
         return password;
     }
 
-    public void setPassword(String password) {
+    public void setPassword(final String password) {
         this.password = password;
     }
 
@@ -162,30 +178,25 @@ public class User extends AbstractModel<Long> {
         return fullRegistration;
     }
 
-    public void setFullRegistration(Boolean fullRegistration) {
+    public void setFullRegistration(final Boolean fullRegistration) {
         this.fullRegistration = fullRegistration;
     }
-
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((id == null) ? 0 : id.hashCode());
-        return result;
-    }
-
+    
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
             return true;
         }
+        
         if (obj == null) {
             return false;
         }
+        
         if (getClass() != obj.getClass()) {
             return false;
         }
         User other = (User) obj;
+        
         if (id == null) {
             if (other.id != null) {
                 return false;
@@ -193,6 +204,7 @@ public class User extends AbstractModel<Long> {
         } else if (!id.equals(other.id)) {
             return false;
         }
+        
         return true;
     }
 
