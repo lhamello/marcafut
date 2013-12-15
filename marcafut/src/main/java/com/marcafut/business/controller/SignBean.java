@@ -18,21 +18,27 @@ import com.marcafut.business.service.UserService;
  */
 @Named
 @ViewAccessScoped
-public class LoginBean implements Serializable {
+public class SignBean implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    private static final String SIGN_IN_UP_NAVIGATION = "index.xhtml?face-redirect=true";
     @Inject
     private User user;
     @Inject
     private UserService userService;
 
-    public String efetuarLogin() {
+    public String signIn() {
         final String email = user.getEmail();
         final String password = user.getPassword();
 
         User usuario = userService.signIn(email, password);
         // sessaoUsuarioController.setUsuarioED(usuario);
-        return "index.xhtml?face-redirect=true";
+        return SIGN_IN_UP_NAVIGATION;
+    }
+
+    public String signUp() {
+        userService.register(user);
+        return SIGN_IN_UP_NAVIGATION;
     }
 
     public User getUser() {

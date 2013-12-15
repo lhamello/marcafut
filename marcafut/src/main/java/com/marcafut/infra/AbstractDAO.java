@@ -53,4 +53,18 @@ public class AbstractDAO<E extends AbstractModel<K>, K> {
         return (E) query.getSingleResult();
     }
     
+    /**
+     * Insert an entity in the database.
+     * 
+     * @param entity entity that will be to insert.
+     * 
+     * @return the inserted entity.
+     */
+    public E insert(final E entity) {
+        entityManager.persist(entity);
+        entityManager.flush();
+        
+        return entity;
+    }
+    
 }

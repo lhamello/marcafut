@@ -34,7 +34,21 @@ public class UserService extends AbstractService<User, Long> {
     public void initDAO() {
         super.setDAO(userDAO);
     }
-
+    
+    /**
+     * Register new user in the system.
+     * 
+     * @param user new user that will be registered.
+     * 
+     * @return the registered user.
+     */
+    public User register(User user) {
+        // indicates that this user has completed their registration
+        user.setFullRegistration(true);
+        
+        return userDAO.insert(user);
+    }
+    
     /**
      * Authenticates the user in the application.
      * 

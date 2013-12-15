@@ -14,28 +14,18 @@
 	<h:body>
 		<h:form>
 			<!-- EMAIL -->
-			<p:outputLabel id="labelEmail" 
-						   for="textEmail"
-						   value="* #{msg['label.email']}:" />
-			
-			<p:inputText   id="textEmail"
-						   required="true" 
-						   requiredMessage="#{msg['user.exception.enter.email']}" 
-						   value="#{loginBean.usuarioED.email}" />
+			<p:outputLabel id="labelEmail" for="textEmail" value="* #{msg['label.email']}:" />
+			<p:inputText   id="textEmail" required="true" requiredMessage="#{msg['user.exception.enter.email']}" value="#{loginBean.user.email}" />
+						   
 			<!-- PASSWORD -->			
-			<p:outputLabel id="labelSenha"
-						   for="password"
-						   value="* #{msg['label.password']}:" />
-			
-			<p:password    id="password"
-						   required="true"
-						   requiredMessage="#{msg['user.exception.enter.password']}" 
-						   value="#{loginBean.usuarioED.password}" />
+			<p:outputLabel id="labelSenha" for="password" value="* #{msg['label.password']}:" />
+			<p:password    id="password" required="true" requiredMessage="#{msg['user.exception.enter.password']}" value="#{loginBean.user.password}" />
+						   
 			<!-- SIGN IN -->
-			<p:commandButton id="btEntrar" 
-							 action="#{loginBean.login()}"
-							 process="@form"
-							 value="Entrar" />
+			<p:commandButton id="btSignIn" action="#{loginBean.signIn()}" process="@form" value="#{msg['label.signIn']}" />
+							
+			<!-- SIGN UP -->		 
+			<p:commandLink id="linkSignUp" />
 		</h:form>
 	</h:body>
 </f:view>
