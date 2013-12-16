@@ -4,29 +4,29 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui">
+	xmlns:p="http://primefaces.org/ui">
 
-<f:view>
-	<h:head>
-		<title>#{msg['label.tituloSistema']}</title>
-	</h:head>
-
-	<h:body>
-		<h:form>
-			<!-- EMAIL -->
-			<p:outputLabel id="labelEmail" for="textEmail" value="* #{msg['label.email']}:" />
-			<p:inputText   id="textEmail" required="true" requiredMessage="#{msg['user.exception.enter.email']}" value="#{loginBean.user.email}" />
-						   
-			<!-- PASSWORD -->			
-			<p:outputLabel id="labelSenha" for="password" value="* #{msg['label.password']}:" />
-			<p:password    id="password" required="true" requiredMessage="#{msg['user.exception.enter.password']}" value="#{loginBean.user.password}" />
-						   
-			<!-- SIGN IN -->
-			<p:commandButton id="btSignIn" action="#{loginBean.signIn()}" process="@form" value="#{msg['label.signIn']}" />
-							
-			<!-- SIGN UP -->		 
-			<p:commandLink id="linkSignUp" />
-		</h:form>
-	</h:body>
-</f:view>
-</html>
+	<f:view>
+		<h:head>
+			<title>#{msg['label.systemTitle']}</title>
+		</h:head>
+	
+		<h:body>
+			<h:form id="formLogin">
+				<!-- EMAIL -->
+				<p:outputLabel id="labelEmail" for="textEmail" value="* #{msg['label.email']}:" />
+				<p:inputText   id="textEmail" required="true" requiredMessage="#{msg['user.exception.enter.email']}" value="#{signBean.user.email}" />
+							   
+				<!-- PASSWORD -->			
+				<p:outputLabel id="labelSenha" for="password" value="* #{msg['label.password']}:" />
+				<p:password    id="password" required="true" requiredMessage="#{msg['user.exception.enter.password']}" value="#{signBean.user.password}" />
+							   
+				<!-- SIGN IN -->
+				<p:commandButton id="btSignIn" action="#{loginBean.signIn()}" process="@form" value="#{msg['label.signIn']}" />
+								
+				<!-- SIGN UP -->		 
+				<p:commandButton id="linkSignUp" action="#{signBean.redirectSignUp()}" partialSubmit="true" process="@this" value="#{msg['label.signUp']}" />
+			</h:form>
+		</h:body>
+	</f:view>
+</html>	

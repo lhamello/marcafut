@@ -26,7 +26,7 @@ import com.marcafut.infra.AbstractModel;
 @Entity
 @Table(name = "SPORTS")
 @NamedQueries({
-    @NamedQuery(name = "User.findById", query = "SELECT s FROM Sports s WHERE s.id = :id")})
+    @NamedQuery(name = "Sport.findById", query = "SELECT s FROM Sport s WHERE s.id = :id")})
 public class Sport extends AbstractModel<Long> {
 
     private static final long serialVersionUID = 1L;

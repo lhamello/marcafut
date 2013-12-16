@@ -3,6 +3,7 @@ package com.marcafut.infra.session;
 import java.io.Serializable;
 
 import javax.enterprise.context.SessionScoped;
+import javax.inject.Inject;
 
 import com.marcafut.business.model.User;
 
@@ -16,7 +17,8 @@ import com.marcafut.business.model.User;
 public class UserSession implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
+    @Inject
+    private ActiveUsers activeUsers;
     private User user;
 
     /**
@@ -34,4 +36,14 @@ public class UserSession implements Serializable {
 
         return logged;
     }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.activeUsers.addUser(user);
+        this.user = user;
+    }
+
 }

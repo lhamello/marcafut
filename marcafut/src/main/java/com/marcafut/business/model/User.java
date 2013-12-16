@@ -16,7 +16,6 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
@@ -54,8 +53,8 @@ public class User extends AbstractModel<Long> {
      */
     @Id
     @Column(name = "ID", nullable = false)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "UsuarioED_SEQ")
-    @SequenceGenerator(name = "UsuarioED_SEQ", sequenceName = "USUARIO_ID_SEQ", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "User_SEQ")
+    @SequenceGenerator(name = "User_SEQ", sequenceName = "USERS_ID_SEQ", allocationSize = 1)
     private Long id;
     /**
      * User's photo.
@@ -94,7 +93,6 @@ public class User extends AbstractModel<Long> {
      */
     @Column(name = "PASSWORD", length = 128)
     @NotBlank
-    @Size(min = 6, max = 16)
     private String password;
     /**
      * Indicates whether or not the user has finished his record in the system.
