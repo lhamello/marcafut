@@ -67,7 +67,7 @@
 			<artifactId>javamelody-core</artifactId>
 			<version>1.47.0</version>
 		</dependency>
-	
+
 		<!-- Extensões CDI -->
 		<dependency>
 			<groupId>org.apache.myfaces.extensions.cdi.bundles</groupId>
@@ -80,6 +80,11 @@
 			<groupId>org.primefaces</groupId>
 			<artifactId>primefaces</artifactId>
 			<version>3.5</version>
+		</dependency>
+		<dependency>
+			<groupId>org.primefaces.themes</groupId>
+			<artifactId>start</artifactId>
+			<version>1.0.10</version>
 		</dependency>
 
 		<!-- Log da aplicação -->

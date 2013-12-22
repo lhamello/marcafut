@@ -3,9 +3,10 @@
 	xmlns="http://java.sun.com/xml/ns/javaee"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	version="2.5">
-	
+
 	<display-name>marcafut</display-name>
 	
+	<!-- CONTEXT PARAMS -->
 	<context-param>
 		<param-name>javax.faces.PROJECT_STAGE</param-name>
 		<param-value>Development</param-value>
@@ -19,7 +20,12 @@
 		<param-name>javax.servlet.jsp.jstl.fmt.localizationContext</param-name>
 		<param-value>resources.application</param-value>
 	</context-param>
+	<context-param>
+		<param-name>primefaces.THEME</param-name>
+		<param-value>start</param-value>
+	</context-param>
 	
+	<!-- FILTERS -->
 	<filter>
 		<filter-name>monitoring</filter-name>
 		<filter-class>net.bull.javamelody.MonitoringFilter</filter-class>
@@ -28,7 +34,7 @@
 		<filter-name>monitoring</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
-	
+
 	<filter>
 		<filter-name>LoginFiltro</filter-name>
 		<filter-class>com.marcafut.infra.security.SecurityFilter</filter-class>
@@ -41,11 +47,13 @@
 		<filter-name>LoginFiltro</filter-name>
 		<url-pattern>/monitoring</url-pattern>
 	</filter-mapping>
-	
+
+	<!-- LISTENERS -->
 	<listener>
 		<listener-class>net.bull.javamelody.SessionListener</listener-class>
 	</listener>
-	
+
+	<!-- SERVLETS -->
 	<servlet>
 		<servlet-name>Faces Servlet</servlet-name>
 		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
@@ -56,10 +64,12 @@
 		<url-pattern>*.xhtml</url-pattern>
 	</servlet-mapping>
 	
+	<!-- SESSION CONFIG -->
 	<session-config>
 		<session-timeout>1</session-timeout>
 	</session-config>
 	
+	<!-- WELOCOME FILE -->
 	<welcome-file-list>
 		<welcome-file>index.xhtml</welcome-file>
 	</welcome-file-list>
