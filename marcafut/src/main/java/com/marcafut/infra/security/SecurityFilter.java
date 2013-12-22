@@ -12,6 +12,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 
 import com.marcafut.infra.session.UserSession;
@@ -32,7 +33,7 @@ public class SecurityFilter implements Filter {
 
     @Inject
     private UserSession userSession;
-    
+
     @Override
     public void destroy() {
         logger.debug(SecurityFilter.class + " destroyed.");
@@ -43,22 +44,22 @@ public class SecurityFilter implements Filter {
         final HttpServletRequest request = (HttpServletRequest) servletRequest;
         final HttpServletResponse response = (HttpServletResponse) servletResponse;
 
-        if (this.isPublic(request)) {
-            filterChain.doFilter(request, response);
-            return;
-        }
+        servletRequest.setCharacterEncoding("UTF-8");
+        servletResponse.setCharacterEncoding("UTF-8");
 
-        if (userSession == null || !userSession.isUserLogged()) {
+        HttpServletResponse httpResp = (HttpServletResponse) servletResponse;
+        httpResp.setHeader("X-UA-Compatible", "IE=Edge");
+
+        if (!isUrlPermitida(request) && (userSession == null || !userSession.isUserLogged())) {
             doRedirect(request, response, LOGIN_PAGE);
-            return;
         }
 
         filterChain.doFilter(request, response);
-        return;
     }
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
+        logger.debug(SecurityFilter.class + " initialized.");
     }
 
     private void doRedirect(final HttpServletRequest req, final HttpServletResponse res, String url) throws IOException, ServletException {
@@ -72,15 +73,16 @@ public class SecurityFilter implements Filter {
         }
     }
 
-    private boolean isPublic(final HttpServletRequest request) {
-        boolean acessoPublico = false;
-        String requestURI = request.getRequestURI();
-
-        if (requestURI.contains("/public/")) {
-            acessoPublico = true;
-        }
-
-        return acessoPublico;
+    private boolean isUrlPermitida(HttpServletRequest request) {
+        String path = request.getServletPath();
+        // verify if request path is the login page
+        boolean pathEqualsLoginPage = StringUtils.equals(path, LOGIN_PAGE);
+        // verify if request path start with /javax.faces.resource
+        boolean pathStartsWithJavaxFacesResource = StringUtils.startsWith(path, "/javax.faces.resource");
+        // verify if request path contains /public/
+        boolean pathPublic = StringUtils.contains(path, "/public/");
+        
+        return pathEqualsLoginPage || pathStartsWithJavaxFacesResource || pathPublic;
     }
 
 }

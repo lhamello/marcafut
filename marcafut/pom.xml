@@ -10,6 +10,15 @@
 	<name>marcafut</name>
 	<description>O site da sua pelada!</description>
 
+	<repositories>
+		<repository>
+			<id>prime-repo</id>
+			<name>PrimeFaces Maven Repository</name>
+			<url>http://repository.primefaces.org</url>
+			<layout>default</layout>
+		</repository>
+	</repositories>
+
 	<dependencies>
 		<!-- Biblioteca utilitária para criptografia -->
 		<dependency>
@@ -58,7 +67,7 @@
 			<artifactId>javamelody-core</artifactId>
 			<version>1.47.0</version>
 		</dependency>
-
+	
 		<!-- Extensões CDI -->
 		<dependency>
 			<groupId>org.apache.myfaces.extensions.cdi.bundles</groupId>
@@ -70,9 +79,9 @@
 		<dependency>
 			<groupId>org.primefaces</groupId>
 			<artifactId>primefaces</artifactId>
-			<version>4.0</version>
+			<version>3.5</version>
 		</dependency>
-		
+
 		<!-- Log da aplicação -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
