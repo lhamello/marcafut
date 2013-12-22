@@ -27,7 +27,8 @@ import com.marcafut.infra.session.UserSession;
 public class SecurityFilter implements Filter {
 
     private static final String LOGIN_PAGE = "/login.xhtml";
-
+    private static final String CHARACTER_ENCODING = "UTF-8";
+    
     @Inject
     private Logger logger;
 
@@ -44,8 +45,8 @@ public class SecurityFilter implements Filter {
         final HttpServletRequest request = (HttpServletRequest) servletRequest;
         final HttpServletResponse response = (HttpServletResponse) servletResponse;
 
-        servletRequest.setCharacterEncoding("UTF-8");
-        servletResponse.setCharacterEncoding("UTF-8");
+        servletRequest.setCharacterEncoding(CHARACTER_ENCODING);
+        servletResponse.setCharacterEncoding(CHARACTER_ENCODING);
 
         HttpServletResponse httpResp = (HttpServletResponse) servletResponse;
         httpResp.setHeader("X-UA-Compatible", "IE=Edge");
