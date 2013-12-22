@@ -32,8 +32,8 @@ public abstract class AbstractModel<K> implements Serializable {
      */
     public abstract K getId();
     
-    @SuppressWarnings("rawtypes")
     @Override
+    @SuppressWarnings("rawtypes")
     public boolean equals(Object obj) {
         if (this == obj) {
             return true;
