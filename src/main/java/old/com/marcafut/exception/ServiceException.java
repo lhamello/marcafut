@@ -1,7 +1,5 @@
 package old.com.marcafut.exception;
 
-import javax.ejb.ApplicationException;
-
 /**
  * This exception extends {@code RuntimeException}.<br>
  * Should be thrown from the business layer.
@@ -9,7 +7,7 @@ import javax.ejb.ApplicationException;
  * @author Luiz Henrique A. Mello
  * 
  */
-@ApplicationException(rollback = true)
+//@ApplicationException(rollback = true)
 public class ServiceException extends RuntimeException {
 
     private static final long serialVersionUID = 1L;

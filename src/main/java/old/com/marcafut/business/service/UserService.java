@@ -1,85 +1,70 @@
 package old.com.marcafut.business.service;
 
-import javax.annotation.PostConstruct;
-import javax.ejb.Stateless;
-import javax.ejb.TransactionAttribute;
-import javax.ejb.TransactionAttributeType;
-import javax.inject.Inject;
-import javax.persistence.NoResultException;
-
-import org.apache.commons.codec.digest.DigestUtils;
-import org.apache.commons.lang3.StringUtils;
-
-import old.com.marcafut.business.dao.UserDAO;
-import old.com.marcafut.business.model.User;
-import old.com.marcafut.exception.ServiceException;
-import old.com.marcafut.infra.AbstractService;
-
 /**
  * This class contains the rules for the application users.
  * 
  * @author Luiz Henrique A. Mello
  * 
  */
-@Stateless
-@TransactionAttribute(TransactionAttributeType.SUPPORTS)
-public class UserService extends AbstractService<User, Long> {
-
-    private static final long serialVersionUID = 1L;
-    @Inject
-    private UserDAO userDAO;
-
-    @Override
-    @PostConstruct
-    public void initDAO() {
-        super.setDAO(userDAO);
-    }
-    
-    /**
-     * Register new user in the system.
-     * 
-     * @param user new user that will be registered.
-     * 
-     * @return the registered user.
-     */
-    public User register(User user) {
-        // indicates that this user has completed their registration
-        user.setFullRegistration(true);
-        
-        return userDAO.insert(user);
-    }
-    
-    /**
-     * Authenticates the user in the application.
-     * 
-     * @param email
-     *            user e-mail.
-     * 
-     * @param password
-     *            user password.
-     * 
-     * @return the logged user.
-     * 
-     * @throws ServiceException
-     *             if the email or password is {@code null} or incorrect.
-     */
-    public User signIn(final String email, final String password) {
-        if (StringUtils.isBlank(email)) {
-            throw new ServiceException(bundle.getMessage("user.exception.enter.email"));
-        } else if (StringUtils.isBlank(password)) {
-            throw new ServiceException(bundle.getMessage("user.exception.enter.password"));
-        }
-
-        User user;
-        String encryptedPassword = DigestUtils.sha512Hex(password);
-        
-        try {
-            user = userDAO.findByEmailPassword(email, encryptedPassword);
-        } catch (NoResultException ex) {
-            throw new ServiceException(bundle.getMessage("user.exception.wrong.email.password"), ex);
-        }
-
-        return user;
-    }
-
-}
+//@Stateless
+//@TransactionAttribute(TransactionAttributeType.SUPPORTS)
+//public class UserService extends AbstractService<User, Long> {
+//
+//    private static final long serialVersionUID = 1L;
+////    @Inject
+////    private UserDAO userDAO;
+//
+//    @Override
+//    @PostConstruct
+//    public void initDAO() {
+////        super.setDAO(userDAO);
+//    }
+//    
+//    /**
+//     * Register new user in the system.
+//     * 
+//     * @param user new user that will be registered.
+//     * 
+//     * @return the registered user.
+//     */
+////    public User register(User user) {
+////        // indicates that this user has completed their registration
+////        user.setFullRegistration(true);
+////        
+////        return userDAO.insert(user);
+////    }
+//    
+//    /**
+//     * Authenticates the user in the application.
+//     * 
+//     * @param email
+//     *            user e-mail.
+//     * 
+//     * @param password
+//     *            user password.
+//     * 
+//     * @return the logged user.
+//     * 
+//     * @throws ServiceException
+//     *             if the email or password is {@code null} or incorrect.
+//     */
+////    public User signIn(final String email, final String password) {
+////        if (StringUtils.isBlank(email)) {
+////            throw new ServiceException(bundle.getMessage("user.exception.enter.email"));
+////        } else if (StringUtils.isBlank(password)) {
+////            throw new ServiceException(bundle.getMessage("user.exception.enter.password"));
+////        }
+//
+////        User user;
+////        String encryptedPassword = DigestUtils.sha512Hex(password);
+//        
+////        try {
+////            user = userDAO.findByEmailPassword(email, encryptedPassword);
+////        } catch (NoResultException ex) {
+////            throw new ServiceException(bundle.getMessage("user.exception.wrong.email.password"), ex);
+////        }
+//
+////        return user;
+////    }
+//
+//}
