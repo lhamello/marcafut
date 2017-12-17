@@ -1,4 +1,4 @@
-package com.marcafut.business.service;
+package old.com.marcafut.business.service;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.Stateless;
@@ -10,10 +10,10 @@ import javax.persistence.NoResultException;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.StringUtils;
 
-import com.marcafut.business.dao.UserDAO;
-import com.marcafut.business.model.User;
-import com.marcafut.exception.ServiceException;
-import com.marcafut.infra.AbstractService;
+import old.com.marcafut.business.dao.UserDAO;
+import old.com.marcafut.business.model.User;
+import old.com.marcafut.exception.ServiceException;
+import old.com.marcafut.infra.AbstractService;
 
 /**
  * This class contains the rules for the application users.

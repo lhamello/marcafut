@@ -1,4 +1,4 @@
-package com.marcafut.util;
+package old.com.marcafut.util;
 
 import java.text.MessageFormat;
 import java.util.MissingResourceException;

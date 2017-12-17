@@ -1,4 +1,4 @@
-package com.marcafut.infra.security;
+package old.com.marcafut.infra.security;
 
 import java.io.IOException;
 
@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 
-import com.marcafut.infra.session.UserSession;
+import old.com.marcafut.infra.session.UserSession;
 
 /**
  * Security filter application responsible for directing to the login screen

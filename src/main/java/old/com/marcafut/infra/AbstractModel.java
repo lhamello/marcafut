@@ -1,4 +1,4 @@
-package com.marcafut.infra;
+package old.com.marcafut.infra;
 
 import java.io.Serializable;
 import java.lang.reflect.Field;
@@ -7,7 +7,7 @@ import javax.inject.Inject;
 
 import org.slf4j.Logger;
 
-import com.marcafut.util.MessageBundleUtil;
+import old.com.marcafut.util.MessageBundleUtil;
 
 /**
  * Abstract class for system model classes.

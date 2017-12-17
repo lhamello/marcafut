@@ -1,4 +1,4 @@
-package com.marcafut.infra;
+package old.com.marcafut.infra;
 
 import java.lang.reflect.ParameterizedType;
 

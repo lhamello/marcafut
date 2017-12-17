@@ -1,10 +1,10 @@
-package com.marcafut.infra.session;
+package old.com.marcafut.infra.session;
 
 import java.util.Map;
 
 import javax.enterprise.context.ApplicationScoped;
 
-import com.marcafut.business.model.User;
+import old.com.marcafut.business.model.User;
 
 /**
  * 

@@ -1,11 +1,11 @@
-package com.marcafut.infra.session;
+package old.com.marcafut.infra.session;
 
 import java.io.Serializable;
 
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 
-import com.marcafut.business.model.User;
+import old.com.marcafut.business.model.User;
 
 /**
  * This class is responsible for control the user session.

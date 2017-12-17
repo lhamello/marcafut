@@ -1,4 +1,4 @@
-package com.marcafut.exception;
+package old.com.marcafut.exception;
 
 import javax.ejb.ApplicationException;
 

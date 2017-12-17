@@ -1,9 +1,9 @@
-package com.marcafut.business.dao;
+package old.com.marcafut.business.dao;
 
 import javax.persistence.Query;
 
-import com.marcafut.business.model.User;
-import com.marcafut.infra.AbstractDAO;
+import old.com.marcafut.business.model.User;
+import old.com.marcafut.infra.AbstractDAO;
 
 /**
  * This class accesses the USERS table in the database.

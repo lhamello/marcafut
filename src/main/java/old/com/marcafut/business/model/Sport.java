@@ -1,4 +1,4 @@
-package com.marcafut.business.model;
+package old.com.marcafut.business.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,7 +10,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import com.marcafut.infra.AbstractModel;
+import old.com.marcafut.infra.AbstractModel;
 
 /**
  * Represents the sports games can be scheduled.<br>

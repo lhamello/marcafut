@@ -1,15 +1,15 @@
-package com.marcafut.business.controller;
+package old.com.marcafut.business.controller;
 
 import java.io.Serializable;
 
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import com.marcafut.infra.session.UserSession;
-import org.apache.myfaces.extensions.cdi.core.api.scope.conversation.ViewAccessScoped;
+import old.com.marcafut.business.model.User;
+import old.com.marcafut.business.service.UserService;
+import old.com.marcafut.infra.session.UserSession;
 
-import com.marcafut.business.model.User;
-import com.marcafut.business.service.UserService;
+import org.apache.myfaces.extensions.cdi.core.api.scope.conversation.ViewAccessScoped;
 
 /**
  * This class control the user login in the application.

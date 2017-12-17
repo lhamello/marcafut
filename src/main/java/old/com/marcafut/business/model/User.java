@@ -1,4 +1,4 @@
-package com.marcafut.business.model;
+package old.com.marcafut.business.model;
 
 import java.util.Arrays;
 import java.util.Calendar;
@@ -20,7 +20,7 @@ import javax.validation.constraints.Pattern;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
-import com.marcafut.infra.AbstractModel;
+import old.com.marcafut.infra.AbstractModel;
 
 /**
  * Represents the system user.<br>

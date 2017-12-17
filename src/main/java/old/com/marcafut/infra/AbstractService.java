@@ -1,12 +1,12 @@
-package com.marcafut.infra;
+package old.com.marcafut.infra;
 
 import java.io.Serializable;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
-import com.marcafut.exception.ServiceException;
-import com.marcafut.util.MessageBundleUtil;
+import old.com.marcafut.exception.ServiceException;
+import old.com.marcafut.util.MessageBundleUtil;
 
 /**
  * Abstract class for the system service classes.<br>
@@ -43,7 +43,7 @@ public abstract class AbstractService<E extends AbstractModel<K>, K> implements 
      * 
      * @return the value of entity searched.
      * 
-     * @see com.marcafut.infra.AbstractDAO#findById(Object)
+     * @see old.com.marcafut.infra.AbstractDAO#findById(Object)
      */
     public E findById(final K primaryKey) {
         if (primaryKey == null) {
