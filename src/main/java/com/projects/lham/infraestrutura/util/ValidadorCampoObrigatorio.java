@@ -2,7 +2,7 @@ package com.projects.lham.infraestrutura.util;
 
 import org.apache.commons.lang3.Validate;
 
-import com.projects.lham.infraestrutura.excecao.CampoObrigatorioException;
+import com.projects.lham.infraestrutura.excecao.CampoObrigatorioRuntimeException;
 
 public class ValidadorCampoObrigatorio {
 
@@ -14,7 +14,7 @@ public class ValidadorCampoObrigatorio {
 		try {
 			Validate.notBlank(campo);
 		} catch (NullPointerException | IllegalArgumentException excecao) {
-			throw new CampoObrigatorioException(nomeCampo, excecao);
+			throw new CampoObrigatorioRuntimeException(nomeCampo, excecao);
 		}
 	}
 }
