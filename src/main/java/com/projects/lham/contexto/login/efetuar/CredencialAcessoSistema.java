@@ -17,7 +17,7 @@ class CredencialAcessoSistema {
 		this.email = email;
 	}
 
-	private void setSenha(String senha) {
+	private void setSenha(final String senha) {
 		ValidadorCampoObrigatorio.verificarPreenchimento(senha, "Senha");
 		this.senha = senha;
 	}
