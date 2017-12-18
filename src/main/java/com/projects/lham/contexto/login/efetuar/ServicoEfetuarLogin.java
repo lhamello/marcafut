@@ -7,6 +7,6 @@ class ServicoEfetuarLogin extends ServicoAplicacao {
 	private static final long serialVersionUID = 1L;
 	
 	public void acessarSistema(final String email, final String senha) {
-//		CredencialAcessoSistema credencial = new CredencialAcessoSistema(email, senha);
+		CredencialAcessoSistema credencial = new CredencialAcessoSistema(email, senha);
 	}
 }
