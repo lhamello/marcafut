@@ -1,8 +1,5 @@
 package com.projects.lham.infraestrutura.objetovalor;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import javax.mail.internet.InternetAddress;
 
 public class EnderecoEmail {
@@ -32,18 +29,18 @@ public class EnderecoEmail {
 //		}
 	}
 
-	private boolean isValido(final String enderecoEmail) {
-		Pattern pattern = Pattern.compile("");
-		Matcher matcher = pattern.matcher(enderecoEmail);
-
-		boolean emailValido = matcher.matches();
-
-		if (!emailValido) {
-			throw new RuntimeException("E-mail inválido.");
-		}
-
-		return true;
-	}
+//	private boolean isValido(final String enderecoEmail) {
+//		Pattern pattern = Pattern.compile("");
+//		Matcher matcher = pattern.matcher(enderecoEmail);
+//
+//		boolean emailValido = matcher.matches();
+//
+//		if (!emailValido) {
+//			throw new RuntimeException("E-mail inválido.");
+//		}
+//
+//		return true;
+//	}
 
 	public String getEnderecoEmail() {
 		return enderecoEmail;
