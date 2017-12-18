@@ -1,6 +1,6 @@
 package com.projects.lham.infraestrutura.excecao;
 
-public class ServicoRuntimeException extends RuntimeException {
+public abstract class ServicoRuntimeException extends RuntimeException {
 
 	private static final long serialVersionUID = 1L;
 
