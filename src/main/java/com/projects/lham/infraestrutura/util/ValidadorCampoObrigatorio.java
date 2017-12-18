@@ -6,6 +6,10 @@ import com.projects.lham.infraestrutura.excecao.CampoObrigatorioException;
 
 public class ValidadorCampoObrigatorio {
 
+	private ValidadorCampoObrigatorio() {
+		throw new IllegalStateException("Classe utilitária.");
+	}
+
 	public static void verificarPreenchimento(final String campo, final String nomeCampo) {
 		try {
 			Validate.notBlank(campo);
