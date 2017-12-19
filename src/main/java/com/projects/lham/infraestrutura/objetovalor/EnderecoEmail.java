@@ -1,5 +1,6 @@
 package com.projects.lham.infraestrutura.objetovalor;
 
+import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 
 public class EnderecoEmail {
@@ -10,14 +11,14 @@ public class EnderecoEmail {
 	public EnderecoEmail(final String enderecoEmail) {
 //		boolean valido = EmailValidator.getInstance().isValid(enderecoEmail);
 		
-//		try {
-//			InternetAddress enderecoInternet = new InternetAddress(enderecoEmail);
-//			enderecoInternet.validate();
-//			this.enderecoEmail = enderecoEmail;
-//		} catch (Exception e) {
-//			throw new RuntimeException("E-mail inválido.");
-//		}
-//		
+		try {
+			InternetAddress enderecoInternet = new InternetAddress(enderecoEmail);
+			enderecoInternet.validate();
+			this.enderecoEmail = enderecoEmail;
+		} catch (AddressException e) {
+			throw new RuntimeException("E-mail inválido.");
+		}
+		
 //		if (valido) {
 //			this.enderecoEmail = enderecoEmail;
 //		} else {
