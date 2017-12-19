@@ -50,7 +50,12 @@ public class EnderecoEmailTest {
 							 "just\"not\"right@example.com", // (quoted strings must be dot separated or the only element making up the local-part)
 							 "this is\"not\\allowed@example.com", // (spaces, quotes, and backslashes may only exist when within quoted strings and preceded by a backslash)
 							 "this\\ still\\\"not\\\\allowed@example.com", // (even if escaped (preceded by a backslash), spaces, quotes, and backslashes must still be contained by quotes)
+//							 "1234567890123456789012345678901234567890123456789012345678901234+x@example.com", // (too long)
+//							 "john..doe@example.com", // (double dot before @)
+//							 "example@localhost", // (sent from localhost)
 							 "john.doe@example..com", // (double dot after @)
+//							 "\" \"@example.org", // (space between the quotes)
+//							 "\"very.unusual.@.unusual.com\"@example.com", // (space between the quotes)
 							 "Duy"
 						   })
 	public void naoDeveGerarEmailValido(final String enderecoEmail) {
