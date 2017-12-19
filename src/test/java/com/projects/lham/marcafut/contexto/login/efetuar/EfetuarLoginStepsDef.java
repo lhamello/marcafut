@@ -1,8 +1,4 @@
-package com.projects.lham.contexto.login.efetuar;
-
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
+package com.projects.lham.marcafut.contexto.login.efetuar;
 
 //import com.projects.lham.contexto.login.efetuar.ServicoEfetuarLogin;
 //import com.projects.lham.infraestrutura.excecao.CampoObrigatorioRuntimeException;
