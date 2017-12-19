@@ -167,15 +167,17 @@
 				<executions>
 					<execution>
 						<id>execution</id>
-						<phase>verify</phase>
+						<phase>generate-resources</phase>
 						<goals>
 							<goal>generate</goal>
 						</goals>
 						<configuration>
-							<projectName>cucumber-jvm-example</projectName>
-							<outputDirectory>${project.build.directory}/cucumber-html-reports</outputDirectory>
-							<cucumberOutput>${project.build.directory}/cucumber.json</cucumberOutput>
-							<enableFlashCharts>true</enableFlashCharts>
+							<projectName>Marcafut BDD</projectName>
+							<outputDirectory>${project.build.directory}/cucumber-reports</outputDirectory>
+							<cucumberOutput>${project.build.directory}</cucumberOutput>
+							<enableFlashCharts>false</enableFlashCharts>
+							<checkBuildResult>false</checkBuildResult>
+							<skippedFails>true</skippedFails>
 						</configuration>
 					</execution>
 				</executions>
