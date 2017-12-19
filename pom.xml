@@ -174,7 +174,7 @@
 						<configuration>
 							<projectName>Marcafut BDD</projectName>
 							<outputDirectory>${project.build.directory}/cucumber-reports</outputDirectory>
-							<cucumberOutput>${project.build.directory}</cucumberOutput>
+							<cucumberOutput>${project.build.directory}/cucumber-reports</cucumberOutput>
 							<enableFlashCharts>false</enableFlashCharts>
 							<checkBuildResult>false</checkBuildResult>
 							<skippedFails>true</skippedFails>
