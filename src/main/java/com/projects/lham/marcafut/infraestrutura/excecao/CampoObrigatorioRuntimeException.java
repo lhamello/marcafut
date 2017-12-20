@@ -11,8 +11,4 @@ public class CampoObrigatorioRuntimeException extends AbstractServicoRuntimeExce
     public CampoObrigatorioRuntimeException(final String nomeCampo) {
         super(String.format(MENSAGEM_ERRO, nomeCampo));
     }
-    
-    public CampoObrigatorioRuntimeException(final String nomeCampo, final Throwable excecao) {
-        super(String.format(MENSAGEM_ERRO, nomeCampo), excecao);
-    }
 }
