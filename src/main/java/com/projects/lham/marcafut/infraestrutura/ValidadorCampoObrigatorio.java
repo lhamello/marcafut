@@ -1,7 +1,6 @@
 package com.projects.lham.marcafut.infraestrutura;
 
 import com.projects.lham.marcafut.infraestrutura.excecao.CampoObrigatorioRuntimeException;
-import org.apache.commons.lang3.Validate;
 
 public final class ValidadorCampoObrigatorio {
 
@@ -10,10 +9,27 @@ public final class ValidadorCampoObrigatorio {
     }
 
     public static void verificarPreenchimento(final String campo, final String nomeCampo) {
-        try {
-            Validate.notBlank(campo);
-        } catch (NullPointerException | IllegalArgumentException excecao) {
-            throw new CampoObrigatorioRuntimeException(nomeCampo, excecao);
+        if (ehNulo(campo) || ehVazio(campo) || contemSomenteEspacoesEmBranco(campo)) {
+            throw new CampoObrigatorioRuntimeException(nomeCampo);
         }
+    }
+
+    private static boolean ehNulo(final String campo) {
+        return campo == null;
+    }
+
+    private static boolean ehVazio(final String campo) {
+        return campo.length() == 0;
+    }
+
+    private static boolean contemSomenteEspacoesEmBranco(final String campo) {
+        for (int i = 0; i < campo.length(); i++) {
+
+            if (!Character.isWhitespace(campo.charAt(i))) {
+                return false;
+            }
+        }
+
+        return true;
     }
 }

@@ -8,6 +8,10 @@ public class CampoObrigatorioRuntimeException extends AbstractServicoRuntimeExce
 
     private static final long serialVersionUID = 1L;
 
+    public CampoObrigatorioRuntimeException(final String nomeCampo) {
+        super(String.format(MENSAGEM_ERRO, nomeCampo));
+    }
+    
     public CampoObrigatorioRuntimeException(final String nomeCampo, final Throwable excecao) {
         super(String.format(MENSAGEM_ERRO, nomeCampo), excecao);
     }
