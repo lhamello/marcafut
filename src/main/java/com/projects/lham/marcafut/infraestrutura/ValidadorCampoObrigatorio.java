@@ -4,7 +4,7 @@ import org.apache.commons.lang3.Validate;
 
 import com.projects.lham.marcafut.infraestrutura.excecao.CampoObrigatorioRuntimeException;
 
-public class ValidadorCampoObrigatorio {
+public final class ValidadorCampoObrigatorio {
 
     private ValidadorCampoObrigatorio() {
         throw new IllegalStateException("Classe utilitária.");
