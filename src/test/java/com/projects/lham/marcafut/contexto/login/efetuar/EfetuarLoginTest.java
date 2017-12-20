@@ -8,8 +8,8 @@ import cucumber.api.junit.Cucumber;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(features = {
-		"src/test/resources/cucumber_features/US001_EfetuarLogin.feature" }, snippets = SnippetType.CAMELCASE, plugin = {
-				"pretty", "html:target/html", "json:cucumber.json" })
+        "src/test/resources/cucumber_features/US001_EfetuarLogin.feature" }, snippets = SnippetType.CAMELCASE, plugin = {
+                "pretty", "html:target/html", "json:cucumber.json" })
 public class EfetuarLoginTest {
 
 }

@@ -6,15 +6,15 @@ import com.projects.lham.marcafut.infraestrutura.excecao.CampoObrigatorioRuntime
 
 public class ValidadorCampoObrigatorio {
 
-	private ValidadorCampoObrigatorio() {
-		throw new IllegalStateException("Classe utilitária.");
-	}
+    private ValidadorCampoObrigatorio() {
+        throw new IllegalStateException("Classe utilitária.");
+    }
 
-	public static void verificarPreenchimento(final String campo, final String nomeCampo) {
-		try {
-			Validate.notBlank(campo);
-		} catch (NullPointerException | IllegalArgumentException excecao) {
-			throw new CampoObrigatorioRuntimeException(nomeCampo, excecao);
-		}
-	}
+    public static void verificarPreenchimento(final String campo, final String nomeCampo) {
+        try {
+            Validate.notBlank(campo);
+        } catch (NullPointerException | IllegalArgumentException excecao) {
+            throw new CampoObrigatorioRuntimeException(nomeCampo, excecao);
+        }
+    }
 }
