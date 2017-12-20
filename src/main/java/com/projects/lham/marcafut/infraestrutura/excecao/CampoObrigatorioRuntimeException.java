@@ -1,8 +1,8 @@
 package com.projects.lham.marcafut.infraestrutura.excecao;
 
-import com.projects.lham.marcafut.infraestrutura.ServicoRuntimeException;
+import com.projects.lham.marcafut.infraestrutura.AbstractServicoRuntimeException;
 
-public class CampoObrigatorioRuntimeException extends ServicoRuntimeException {
+public class CampoObrigatorioRuntimeException extends AbstractServicoRuntimeException {
 
     public static final String MENSAGEM_ERRO = "Campo de preenchimento obrigatório não informado: %s.";
 
