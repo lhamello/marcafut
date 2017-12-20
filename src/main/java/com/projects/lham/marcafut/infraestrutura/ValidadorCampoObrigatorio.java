@@ -1,8 +1,7 @@
 package com.projects.lham.marcafut.infraestrutura;
 
-import org.apache.commons.lang3.Validate;
-
 import com.projects.lham.marcafut.infraestrutura.excecao.CampoObrigatorioRuntimeException;
+import org.apache.commons.lang3.Validate;
 
 public final class ValidadorCampoObrigatorio {
 
