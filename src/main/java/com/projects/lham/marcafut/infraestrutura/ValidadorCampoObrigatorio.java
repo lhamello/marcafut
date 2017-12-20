@@ -1,5 +1,6 @@
 package com.projects.lham.marcafut.infraestrutura;
 
+
 import com.projects.lham.marcafut.infraestrutura.excecao.CampoObrigatorioRuntimeException;
 
 public final class ValidadorCampoObrigatorio {
@@ -23,13 +24,16 @@ public final class ValidadorCampoObrigatorio {
     }
 
     private static boolean contemSomenteEspacoesEmBranco(final String campo) {
+        boolean contemSomenteEspacosEmBranco = true;
+        
         for (int i = 0; i < campo.length(); i++) {
 
             if (!Character.isWhitespace(campo.charAt(i))) {
-                return false;
+                contemSomenteEspacosEmBranco = false;
+                break;
             }
         }
 
-        return true;
+        return contemSomenteEspacosEmBranco;
     }
 }
