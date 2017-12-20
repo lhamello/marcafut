@@ -16,8 +16,8 @@ public class EfetuarLoginStepsDef {
     private ServicoEfetuarLogin servicoEfetuarLogin = new ServicoEfetuarLogin();
     private AbstractServicoRuntimeException servicoRuntimeException;
 
-    @Dado("^que nao preencho o campo	e-mail$")
-    public void queNaoPreenchoOCampoEMail() throws Throwable {
+    @Dado("^que nao preencho o campo email$")
+    public void queNaoPreenchoOCampoEmail() throws Throwable {
         this.email = "";
     }
 
@@ -26,8 +26,8 @@ public class EfetuarLoginStepsDef {
         this.senha = "1234";
     }
 
-    @Quando("^tento logar no sistema$")
-    public void tentoLogarNoSistema() throws Throwable {
+    @Quando("^quando efetuo o login do sistema$")
+    public void quandoEfetuoOLoginDoSistema() throws Throwable {
         try {
             servicoEfetuarLogin.acessarSistema(email, senha);
         } catch (AbstractServicoRuntimeException excecao) {
@@ -39,5 +39,21 @@ public class EfetuarLoginStepsDef {
     public void deveSerExigidoOPreenchimentoDoCampoEmail() throws Throwable {
         String mensagemErro = CampoObrigatorioRuntimeException.MENSAGEM_ERRO;
         assertThat(servicoRuntimeException.getMessage(), equalTo(String.format(mensagemErro, "E-mail")));
+    }
+
+    @Dado("^que preencho o campo email$")
+    public void quePreenchoOCampoEmail() throws Throwable {
+        this.email = "teste@teste.com";
+    }
+
+    @Dado("^que nao preencho o campo senha$")
+    public void queNaoPreenchoOCampoSenha() throws Throwable {
+        this.senha = "       ";
+    }
+
+    @Entao("^deve ser exigido o preenchimento do campo senha$")
+    public void deveSerExigidoOPreenchimentoDoCampoSenha() throws Throwable {
+        String mensagemErro = CampoObrigatorioRuntimeException.MENSAGEM_ERRO;
+        assertThat(servicoRuntimeException.getMessage(), equalTo(String.format(mensagemErro, "Senha")));
     }
 }
