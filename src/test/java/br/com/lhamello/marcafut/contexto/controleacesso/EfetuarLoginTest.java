@@ -7,10 +7,11 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(features = "src/test/resources/historias_usuario_features/US001_EfetuarLogin.feature", 
-                 glue = "br.com.projects.lham.contexto.controleacesso", 
+                 glue = "br.com.lhamello.marcafut.contexto.controleacesso", 
                  monochrome = true, 
                  plugin = { "pretty", "html:target/html", "json:cucumber.json" }, 
-                 snippets = SnippetType.CAMELCASE)
+                 snippets = SnippetType.CAMELCASE,
+                 tags = { "~@NaoAutomatizar" })
 public class EfetuarLoginTest {
 
 }
