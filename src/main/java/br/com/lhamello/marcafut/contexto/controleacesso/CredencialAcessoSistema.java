@@ -1,6 +1,6 @@
-package com.projects.lham.marcafut.contexto.login.efetuar;
+package br.com.lhamello.marcafut.contexto.controleacesso;
 
-import com.projects.lham.marcafut.infraestrutura.ValidadorCampoObrigatorio;
+import br.com.lhamello.marcafut.infraestrutura.ValidadorCampoObrigatorio;
 
 class CredencialAcessoSistema {
 

@@ -1,21 +1,23 @@
-package com.projects.lham.marcafut.contexto.login.efetuar;
+package br.com.lhamello.marcafut.contexto.controleacesso;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-import com.projects.lham.marcafut.infraestrutura.AbstractServicoRuntimeException;
-import com.projects.lham.marcafut.infraestrutura.excecao.CampoObrigatorioRuntimeException;
+import br.com.lhamello.marcafut.contexto.controleacesso.EfetuarLoginService;
+import br.com.lhamello.marcafut.contexto.controleacesso.UsuarioSistemaDTO;
+import br.com.lhamello.marcafut.infraestrutura.AbstractServiceException;
+import br.com.lhamello.marcafut.infraestrutura.excecao.CampoObrigatorioException;
 import cucumber.api.java.pt.Dado;
 import cucumber.api.java.pt.Entao;
 import cucumber.api.java.pt.Quando;
 
 public class EfetuarLoginStepsDef {
-
+    
     private String email = null;
     private String senha = null;
-    private ServicoEfetuarLogin servicoEfetuarLogin = new ServicoEfetuarLogin();
-    private AbstractServicoRuntimeException servicoRuntimeException;
+    private EfetuarLoginService servicoEfetuarLogin = new EfetuarLoginService();
+    private AbstractServiceException servicoRuntimeException;
     private UsuarioSistemaDTO usuarioSistemaDTO;
 
     @Dado("^que nao preencho o campo email$")
@@ -32,14 +34,14 @@ public class EfetuarLoginStepsDef {
     public void efetuoOLoginNoSistema() throws Throwable {
         try {
             usuarioSistemaDTO = servicoEfetuarLogin.efetuarLogin(email, senha);
-        } catch (AbstractServicoRuntimeException excecao) {
+        } catch (AbstractServiceException excecao) {
             servicoRuntimeException = excecao;
         }
     }
 
     @Entao("^deve ser exigido o preenchimento do campo email$")
     public void deveSerExigidoOPreenchimentoDoCampoEmail() throws Throwable {
-        String mensagemErro = CampoObrigatorioRuntimeException.MENSAGEM_ERRO;
+        String mensagemErro = CampoObrigatorioException.MENSAGEM_ERRO;
         assertThat(servicoRuntimeException.getMessage(), equalTo(String.format(mensagemErro, "E-mail")));
     }
 
@@ -55,7 +57,7 @@ public class EfetuarLoginStepsDef {
 
     @Entao("^deve ser exigido o preenchimento do campo senha$")
     public void deveSerExigidoOPreenchimentoDoCampoSenha() throws Throwable {
-        String mensagemErro = CampoObrigatorioRuntimeException.MENSAGEM_ERRO;
+        String mensagemErro = CampoObrigatorioException.MENSAGEM_ERRO;
         assertThat(servicoRuntimeException.getMessage(), equalTo(String.format(mensagemErro, "Senha")));
     }
 

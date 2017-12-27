@@ -1,17 +1,17 @@
-package com.projects.lham.marcafut.infraestrutura;
+package br.com.lhamello.marcafut.infraestrutura;
 
 
-import com.projects.lham.marcafut.infraestrutura.excecao.CampoObrigatorioRuntimeException;
+import br.com.lhamello.marcafut.infraestrutura.excecao.CampoObrigatorioException;
 
 public final class ValidadorCampoObrigatorio {
 
     private ValidadorCampoObrigatorio() {
-        throw new IllegalStateException("Classe utilitária.");
+        throw new IllegalStateException("Esta classe n�o pode ser instanciada.");
     }
 
     public static void verificarPreenchimento(final String campo, final String nomeCampo) {
         if (ehNulo(campo) || ehVazio(campo) || contemSomenteEspacoesEmBranco(campo)) {
-            throw new CampoObrigatorioRuntimeException(nomeCampo);
+            throw new CampoObrigatorioException(nomeCampo);
         }
     }
 

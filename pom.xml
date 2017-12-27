@@ -1,146 +1,53 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-
+	
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.projects.lham</groupId>
+	<groupId>br.com.lhamello</groupId>
 	<artifactId>marcafut</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
-
 	<name>marcafut</name>
-	<description>O site da sua pelada!</description>
 
 	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<cucumber.version>1.2.5</cucumber.version>
 		<java.version>1.8</java.version>
-		<junit.version>4.12</junit.version>
-		<junit.jupiter.version>5.0.0</junit.jupiter.version>
-		<junit.vintage.version>${junit.version}.0</junit.vintage.version>
-		<junit.jupiter.version>5.0.0</junit.jupiter.version>
-		<junit.platform.version>1.0.0</junit.platform.version>
-		<query.dsl.version>4.1.3</query.dsl.version>
-		<sonar.sources>src/main</sonar.sources>
-		<sonar.tests>src/test</sonar.tests>
-
-		<!-- Below property indicates the pattern of the test suite -->
-		<runSuite>**/*Test.class</runSuite>
-
-		<!-- Sonar-JaCoCo properties -->
-		<sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
-		<sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
+		<latest.version>LATEST</latest.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<sonar.jacoco.reportPath>${project.build.directory}/jacoco.exec</sonar.jacoco.reportPath>
-		<sonar.language>java</sonar.language>
+		<test.suite>**/*Test.class</test.suite>
 	</properties>
 
 	<dependencies>
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-lang3</artifactId>
-			<version>3.7</version>
-		</dependency>
-		<dependency>
-			<groupId>com.sun.mail</groupId>
-			<artifactId>javax.mail</artifactId>
-			<version>1.6.0</version>
-		</dependency>
-
-		<!-- LOG DA APLICAÇÃO -->
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-log4j12</artifactId>
-			<version>1.7.25</version>
-		</dependency>
-	
-		<!-- HIBERNATE -->
+		<!-- JAVA EE -->
         <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-core</artifactId>
-            <version>5.2.12.Final</version>
-        </dependency>
-        <dependency>
-            <groupId>org.hibernate.validator</groupId>
-            <artifactId>hibernate-validator</artifactId>
-            <version>6.0.6.Final</version>
+            <groupId>javax</groupId>
+            <artifactId>javaee-web-api</artifactId>
+            <version>7.0</version>
+            <scope>provided</scope>
         </dependency>
 		
-		<!-- QUERY DSL -->
-		<dependency>
-			<groupId>com.querydsl</groupId>
-			<artifactId>querydsl-apt</artifactId>
-			<version>${query.dsl.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>com.querydsl</groupId>
-			<artifactId>querydsl-jpa</artifactId>
-			<version>${query.dsl.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>com.querydsl</groupId>
-			<artifactId>querydsl-core</artifactId>
-			<version>${query.dsl.version}</version>
-		</dependency>
-
 		<!-- ###################### DEPENDÊNCIAS PARA TESTES ###################### -->
 
 		<!-- CUCUMBER -->
 		<dependency>
 			<groupId>info.cukes</groupId>
 			<artifactId>cucumber-picocontainer</artifactId>
-			<version>${cucumber.version}</version>
+			<version>${latest.version}</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>info.cukes</groupId>
 			<artifactId>cucumber-junit</artifactId>
-			<version>${cucumber.version}</version>
-			<scope>test</scope>
-		</dependency>
-
-		<!-- HAMCREST -->
-		<!-- <dependency> -->
-		<!-- <groupId>org.hamcrest</groupId> -->
-		<!-- <artifactId>hamcrest-all</artifactId> -->
-		<!-- <version>1.3</version> -->
-		<!-- <scope>test</scope> -->
-		<!-- </dependency> -->
-
-		<!-- JUNIT -->
-		<dependency>
-			<groupId>org.junit.jupiter</groupId>
-			<artifactId>junit-jupiter-engine</artifactId>
-			<version>${junit.jupiter.version}</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.junit.jupiter</groupId>
-			<artifactId>junit-jupiter-params</artifactId>
-			<version>${junit.jupiter.version}</version>
-			<scope>test</scope>
-		</dependency>
-		<!-- Para rodar os testes nas IDEs como Eclipse, Intellij -->
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>${junit.version}</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.junit.platform</groupId>
-			<artifactId>junit-platform-runner</artifactId>
-			<version>${junit.platform.version}</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.junit.vintage</groupId>
-			<artifactId>junit-vintage-engine</artifactId>
-			<version>${junit.vintage.version}</version>
+			<version>${latest.version}</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
 
 	<build>
+		<finalName>marcafut</finalName>
+		
 		<plugins>
+
+			<!-- Maven Compiler: compila os fontes do projeto -->
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.7.0</version>
@@ -149,15 +56,19 @@
 					<target>${java.version}</target>
 				</configuration>
 			</plugin>
+
+			<!-- Maven Surefire: executa testes e gera reports de testes -->
 			<plugin>
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>2.20.1</version>
 				<configuration>
 					<includes>
-						<include>${runSuite}</include>
+						<include>${test.suite}</include>
 					</includes>
 				</configuration>
 			</plugin>
+
+			<!-- Jacoco Maven: provê relatórios de cobertura de código -->
 			<plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
@@ -188,6 +99,8 @@
 					</execution>
 				</executions>
 			</plugin>
+
+			<!-- Maven Cucumber Reporting: gera relatório das features do Cucumber -->
 			<plugin>
 				<groupId>net.masterthought</groupId>
 				<artifactId>maven-cucumber-reporting</artifactId>
@@ -210,6 +123,8 @@
 					</execution>
 				</executions>
 			</plugin>
+
+			<!-- Apt Maven: gerar classes para Query DSL -->
 			<plugin>
 				<groupId>com.mysema.maven</groupId>
 				<artifactId>apt-maven-plugin</artifactId>
@@ -227,5 +142,40 @@
 				</executions>
 			</plugin>
 		</plugins>
+		<pluginManagement>
+			<plugins>
+				<!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>
+											net.masterthought
+										</groupId>
+										<artifactId>
+											maven-cucumber-reporting
+										</artifactId>
+										<versionRange>
+											[3.13.0,)
+										</versionRange>
+										<goals>
+											<goal>generate</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore></ignore>
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
 	</build>
 </project>

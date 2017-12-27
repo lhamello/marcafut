@@ -1,4 +1,4 @@
-package com.projects.lham.marcafut.contexto.login.efetuar;
+package br.com.lhamello.marcafut.contexto.controleacesso;
 
 class UsuarioSistemaDTO {
 
