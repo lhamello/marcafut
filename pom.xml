@@ -16,31 +16,54 @@
     </properties>
 
     <dependencies>
+        <!-- ADMIN FACES: http://admin-showcase-admin-showcase.7e14.starter-us-west-2.openshiftapps.com/showcase/docs/index.html -->
+        <dependency>
+            <groupId>com.github.adminfaces</groupId>
+            <artifactId>admin-persistence</artifactId>
+            <version>${latest.version}</version>
+            <!-- <version>1.0.0-RC12</version> -->
+        </dependency>
+        <dependency>
+            <groupId>com.github.adminfaces</groupId>
+            <artifactId>admin-template</artifactId>
+            <version>${latest.version}</version>
+            <!-- <version>1.0.0-RC11</version> -->
+        </dependency>
+        <dependency>
+            <groupId>com.github.adminfaces</groupId>
+            <artifactId>admin-theme</artifactId>
+            <version>${latest.version}</version>
+            <!-- <version>1.0.0-RC11</version> -->
+        </dependency>
+
         <!-- JAVA EE -->
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-web-api</artifactId>
             <version>${latest.version}</version>
-            <scope>provided</scope>
+            <!-- <version>8.0</version> -->
         </dependency>
-        
+
         <!-- JAVA MELODY: realliza a monitoria do sistema -->
         <dependency>
             <groupId>net.bull.javamelody</groupId>
             <artifactId>javamelody-core</artifactId>
             <version>${latest.version}</version>
+            <!-- <version>1.70.0</version> -->
         </dependency>
-        
+
         <!-- PRIMEFACES -->
         <dependency>
             <groupId>org.primefaces</groupId>
             <artifactId>primefaces</artifactId>
             <version>${latest.version}</version>
+            <!-- <version>6.1</version> -->
         </dependency>
         <dependency>
             <groupId>org.primefaces.extensions</groupId>
             <artifactId>primefaces-extensions</artifactId>
             <version>${latest.version}</version>
+            <!-- <version>6.1.1</version> -->
             <!-- only for gravatar, adminfaces doesn't depend on extensions -->
         </dependency>
 
@@ -51,12 +74,14 @@
             <groupId>info.cukes</groupId>
             <artifactId>cucumber-picocontainer</artifactId>
             <version>${latest.version}</version>
+            <!-- <version>1.2.5</version> -->
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>info.cukes</groupId>
             <artifactId>cucumber-junit</artifactId>
             <version>${latest.version}</version>
+            <!-- <version>1.2.5</version> -->
             <scope>test</scope>
         </dependency>
     </dependencies>
