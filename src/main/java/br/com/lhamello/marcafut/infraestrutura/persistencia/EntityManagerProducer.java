@@ -1,4 +1,4 @@
-package br.com.lhamello.marcafut.infraestrutura.producer;
+package br.com.lhamello.marcafut.infraestrutura.persistencia;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Produces;
@@ -9,7 +9,7 @@ import javax.persistence.PersistenceContext;
 public class EntityManagerProducer {
 
     @PersistenceContext
-    EntityManager entityManager;
+    private EntityManager entityManager;
 
     @Produces
     public EntityManager produce() {

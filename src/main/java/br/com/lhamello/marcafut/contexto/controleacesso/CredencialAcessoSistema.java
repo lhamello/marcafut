@@ -1,6 +1,6 @@
 package br.com.lhamello.marcafut.contexto.controleacesso;
 
-import br.com.lhamello.marcafut.infraestrutura.ValidadorCampoObrigatorio;
+import br.com.lhamello.marcafut.infraestrutura.validacao.ValidadorCampoObrigatorio;
 
 class CredencialAcessoSistema {
 

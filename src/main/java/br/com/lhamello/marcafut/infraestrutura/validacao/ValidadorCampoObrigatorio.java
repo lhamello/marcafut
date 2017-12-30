@@ -1,4 +1,4 @@
-package br.com.lhamello.marcafut.infraestrutura;
+package br.com.lhamello.marcafut.infraestrutura.validacao;
 
 
 import br.com.lhamello.marcafut.infraestrutura.excecao.CampoObrigatorioException;
